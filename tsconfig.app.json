@@ -5,6 +5,7 @@
     "outDir": "./out-tsc/app",
     "types": ["node"],
     "paths": {
+      "@app/*": ["./src/app/*"],
       "@services/*": ["./src/shared/data/services/*"],
       "@interfaces/*": ["./src/shared/data/interfaces/*"],
       "@models/*": ["./src/shared/data/models/*"],
