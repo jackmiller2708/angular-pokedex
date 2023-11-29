@@ -25,7 +25,8 @@
       "@services/*": ["./src/shared/data/services/*"],
       "@interfaces/*": ["./src/shared/data/interfaces/*"],
       "@models/*": ["./src/shared/data/models/*"],
-      "@components/*": ["./src/shared/components/*"]
+      "@components/*": ["./src/shared/components/*"],
+      "@environments/*": ["./src/environments/*"]
     }
   },
   "angularCompilerOptions": {
