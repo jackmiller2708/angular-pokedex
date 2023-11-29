@@ -4,13 +4,6 @@
   "compilerOptions": {
     "outDir": "./out-tsc/app",
     "types": ["node"],
-    "paths": {
-      "@app/*": ["./src/app/*"],
-      "@services/*": ["./src/shared/data/services/*"],
-      "@interfaces/*": ["./src/shared/data/interfaces/*"],
-      "@models/*": ["./src/shared/data/models/*"],
-      "@components/*": ["./src/shared/components/*"]
-    }
   },
   "files": ["src/main.ts", "src/main.server.ts", "server.ts"],
   "include": ["src/**/*.d.ts"]
