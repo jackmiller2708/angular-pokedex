@@ -1,8 +1,7 @@
+import { IPokemonAbility, PokemonAbility as TPokemonAbility } from '@interfaces/domain/pokemon';
 import { IPokemonAbility as IPokemonAbilityDto } from '@interfaces/dtos/pokemon';
 import { AdaptableRecordFactory } from '@models/application/utilities';
-import { IPokemonAbility } from '@interfaces/domain/pokemon';
 import { NamedResource } from '../utilities';
-import { RecordOf } from 'immutable';
 
 const defaultValues: IPokemonAbility = {
   ability: NamedResource(),
@@ -10,13 +9,19 @@ const defaultValues: IPokemonAbility = {
   slot: 0,
 }
 
-const adaptor = (value?: IPokemonAbilityDto): RecordOf<IPokemonAbility>  => {
-  throw new Error('Function not implemented.');
+const adaptor = (values?: IPokemonAbilityDto): TPokemonAbility  => {
+  const { ability, is_hidden, slot } = values ?? {};
+
+  return PokemonAbility({
+    ability: NamedResource(ability),
+    isHidden: is_hidden,
+    slot,
+  });
 };
 
 export const PokemonAbility = AdaptableRecordFactory<IPokemonAbilityDto, IPokemonAbility>({
   name: 'PokemonAbility',
-  defaultValues: defaultValues,
+  defaultValues,
   adaptor,
 });
 
