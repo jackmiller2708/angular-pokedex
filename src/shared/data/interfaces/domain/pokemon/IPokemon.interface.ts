@@ -1,4 +1,6 @@
-import { RecordOf } from 'immutable';
+import { PokemonAbility, PokemonHeldItem, PokemonMove, PokemonSprites, PokemonStat, PokemonType, PokemonTypePast } from '.';
+import { NamedResource, VersionGameIndex } from '@interfaces/domain/utilities';
+import { RecordOf, List } from 'immutable';
 /**
  * Pokémon are the creatures that inhabit the world of the Pokémon games.
  * They can be caught using Pokéballs and trained by battling with other
@@ -14,6 +16,17 @@ export interface IPokemon {
   baseExperience: number;
   order: number;
   isDefault: boolean;
+  locationAreaEncounters: string;
+  sprites: PokemonSprites;
+  species: NamedResource;
+  types: List<PokemonType>;
+  stats: List<PokemonStat>;
+  abilities: List<PokemonAbility>;
+  moves: List<PokemonMove>;
+  forms: List<NamedResource>;
+  gameIndices: List<VersionGameIndex>;
+  heldItems: List<PokemonHeldItem>;
+  pastTypes: List<PokemonTypePast>;
 }
 
 /**
