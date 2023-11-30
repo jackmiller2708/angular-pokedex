@@ -14,6 +14,7 @@ This folder contains all the global data-related dependencies, this includes:
 
 ---
 ## 1. Update Models Procedure
+Due to the fact that this application models are mapped with the DTOs from the server so by default there should be steps to follow when updating models:
   1. Start with the DTOs in `./interfaces/dtos` folder, update the desired DTOs
   2. Move to `./interfaces/domain` folder, update the related interfaces
   3. Move to `./models/domain` folder, update the related models
