@@ -14,7 +14,10 @@ import { Pokemon } from '@models/domain';
 export class PokemonService implements IResourceService<TPokemon> {
   private readonly _remoteService: string;
 
-  constructor(private readonly _http: HttpClient, private readonly _helper: HelperService) {
+  constructor(
+    private readonly _http: HttpClient,
+    private readonly _helper: HelperService
+  ) {
     this._remoteService = `${environment.pokemonRemoteServiceBase}/pokemon`;
   }
 
@@ -40,6 +43,6 @@ export class PokemonService implements IResourceService<TPokemon> {
   }
 
   getEncounterAreas(nameOrId: string) {
-    this._http.get(`${this._remoteService}/${nameOrId}/encounters`);
+    throw new Error('Method not implemented!');
   }
 }
