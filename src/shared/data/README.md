@@ -1,5 +1,5 @@
 
-This folder contains all the global data-related dependencies, the includes:
+This folder contains all the global data-related dependencies, this includes:
 
 1. interfaces - contains all global interfaces
     - application - all interfaces that belongs to the application logic.
