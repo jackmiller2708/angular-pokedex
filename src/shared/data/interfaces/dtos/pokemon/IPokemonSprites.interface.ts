@@ -7,4 +7,9 @@ export interface IPokemonSprites {
   back_shiny?: string;
   back_female?: string;
   back_shiny_female?: string;
+  other: IPokemonSpritesExtended;
+}
+
+interface IPokemonSpritesExtended {
+  "official-artwork": Omit<IPokemonSprites, 'other'>;
 }

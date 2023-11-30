@@ -1,6 +1,7 @@
 import { RecordOf } from 'immutable';
 
 export interface IPokemonSprites {
+  officialArtwork: string;
   frontDefault?: string;
   frontShiny?: string;
   frontFemale?: string;

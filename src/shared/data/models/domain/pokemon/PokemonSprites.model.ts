@@ -3,6 +3,7 @@ import { IPokemonSprites as IPokemonSpritesDto } from '@interfaces/dtos/pokemon'
 import { AdaptableRecordFactory } from '@models/application/utilities';
 
 const defaultValues: IPokemonSprites = {
+  officialArtwork: '',
   backDefault: undefined,
   frontDefault: undefined,
   frontShiny: undefined,
@@ -23,6 +24,7 @@ const adaptor = (values?: IPokemonSpritesDto): TPokemonSprites => {
     front_female,
     front_shiny,
     front_shiny_female,
+    other,
   } = values ?? {};
 
   return PokemonSprites({
@@ -34,6 +36,7 @@ const adaptor = (values?: IPokemonSpritesDto): TPokemonSprites => {
     frontFemale: front_female,
     frontShiny: front_shiny,
     frontShinyFemale: front_shiny_female,
+    officialArtwork: other?.["official-artwork"].front_default,
   });
 }
 
