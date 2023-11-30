@@ -2,10 +2,10 @@ import { IAdaptableRecordOptions, IAdaptableRecordFactory } from "@interfaces/ap
 import { Record } from "immutable";
 
 export function AdaptableRecordFactory<R, T extends object>(options: IAdaptableRecordOptions<R, T>): IAdaptableRecordFactory<R, T> {
-  const { defaultValues, adaptor, name } = options;
+  const { defaultValues, adaptor } = options;
   
   return Object.assign<Partial<IAdaptableRecordFactory<R, T>>, any>(
     Record<T>(defaultValues),
-    { adaptor, displayName: name }
+    { adaptor }
   ) as IAdaptableRecordFactory<R, T>;
 }

@@ -19,7 +19,6 @@ const adaptor = (values?: IPokemonHeldItemDto): TPokemonHeldItem => {
 }
 
 export const PokemonHeldItem = AdaptableRecordFactory<IPokemonHeldItemDto, IPokemonHeldItem>({
-  name: 'PokemonHeldItem',
   defaultValues,
   adaptor
 })

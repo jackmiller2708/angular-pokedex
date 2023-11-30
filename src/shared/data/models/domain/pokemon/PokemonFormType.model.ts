@@ -15,7 +15,6 @@ const adaptor = (values?: IPokemonFormTypeDto): TPokemonFormType => {
 };
 
 export const PokemonFormType = AdaptableRecordFactory<IPokemonFormTypeDto, IPokemonFormType>({
-  name: 'PokemonFormType',
   defaultValues,
   adaptor
 })

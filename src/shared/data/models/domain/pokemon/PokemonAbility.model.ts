@@ -20,7 +20,6 @@ const adaptor = (values?: IPokemonAbilityDto): TPokemonAbility  => {
 };
 
 export const PokemonAbility = AdaptableRecordFactory<IPokemonAbilityDto, IPokemonAbility>({
-  name: 'PokemonAbility',
   defaultValues,
   adaptor,
 });

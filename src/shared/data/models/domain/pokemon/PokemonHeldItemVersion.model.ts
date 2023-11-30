@@ -15,7 +15,6 @@ const adaptor = (values?: IPokemonHeldItemVersionDto): TPokemonHeldItemVersion =
 }
 
 export const PokemonHeldItemVersion = AdaptableRecordFactory<IPokemonHeldItemVersionDto, IPokemonHeldItemVersion>({
-  name: 'PokemonHeldItemVersion',
   defaultValues,
   adaptor
 })

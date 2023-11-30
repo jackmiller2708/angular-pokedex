@@ -15,7 +15,6 @@ const adaptor = (values?: IPokemonTypeDto): TPokemonType => {
 }
 
 export const PokemonType = AdaptableRecordFactory<IPokemonTypeDto, IPokemonType>({
-  name: 'PokemonType',
   defaultValues,
   adaptor
 });

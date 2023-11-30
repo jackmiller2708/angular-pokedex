@@ -18,7 +18,6 @@ const adaptor = (values?: IVersionGameIndexDto): TVersionGameIndex => {
 };
 
 export const VersionGameIndex = AdaptableRecordFactory<IVersionGameIndexDto, IVersionGameIndex>({
-  name: 'VersionGameIndex',
   defaultValues,
   adaptor,
 });
