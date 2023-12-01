@@ -1,7 +1,7 @@
-<div [ngStyle]="{ backgroundColor: type.color}">
+<app-badge class="flex gap-1 items-center w-28 !pl-1 !pt-0 !pb-[2px]" [ngStyle]="{ backgroundColor: type.color}"> 
   @if (isIconVisible) {
-    <img [src]="'assets/type-icons/' + type.iconFileName" />
+    <img [ngSrc]="'assets/type-icons/' + type.iconFileName" width="20" height="20" />
   }
-  
-  <span>{{ type.name| titlecase }}</span>  
-</div>
+
+  <span class="text-white font-bold mt-[1px] pt-[1px] text-lg">{{ type.name | titlecase }}</span>  
+</app-badge>

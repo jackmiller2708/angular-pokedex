@@ -1,6 +1,6 @@
+import { CommonModule, NgOptimizedImage  } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { BadgeComponent } from '@components/atoms';
-import { CommonModule } from '@angular/common';
 import { Type as TType } from '@interfaces/domain';
 import { TYPES_COLORS } from '@constants';
 import { Type } from '@models/domain';
@@ -10,7 +10,7 @@ import { HelperService } from '@services/application';
   selector: 'app-type-badge',
   templateUrl: './type-badge.component.html',
   styleUrl: './type-badge.component.scss',
-  imports: [CommonModule, BadgeComponent],
+  imports: [CommonModule, NgOptimizedImage , BadgeComponent],
   standalone: true,
 })
 export class TypeBadgeComponent {
