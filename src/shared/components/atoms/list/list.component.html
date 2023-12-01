@@ -1,0 +1,15 @@
+@if (template) { 
+  @for (item of dataSource; track $index) {
+    <div
+      [ngClass]="itemClass"
+      [ngTemplateOutlet]="template"
+      [ngTemplateOutletContext]="{ item: item }"
+    ></div>
+  } 
+}
+
+@else {
+  @for (item of dataSource; track $index) {
+    <div>{{ item }}</div>
+  } 
+}
