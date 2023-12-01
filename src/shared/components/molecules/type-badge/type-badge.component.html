@@ -1,0 +1,7 @@
+<div [ngStyle]="{ backgroundColor: type.color}">
+  @if (isIconVisible) {
+    <img [src]="'assets/type-icons/' + type.iconFileName" />
+  }
+  
+  <span>{{ type.name| titlecase }}</span>  
+</div>
