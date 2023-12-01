@@ -1,7 +1,16 @@
-<app-badge class="flex gap-1 items-center w-28 !pl-1 !pt-0 !pb-[2px]" [ngStyle]="{ backgroundColor: type.color}"> 
+<app-badge 
+  class="flex gap-1 items-center w-28 !pb-[2px] !pt-0"
+  [ngClass]="{ '!pl-1': isIconVisible, ' !px-0': !isIconVisible }"
+  [ngStyle]="{ backgroundColor: type.color }"
+> 
   @if (isIconVisible) {
     <img [ngSrc]="'assets/type-icons/' + type.iconFileName" width="20" height="20" />
   }
 
-  <span class="text-white font-bold mt-[1px] pt-[1px] text-lg">{{ type.name | titlecase }}</span>  
+  <span 
+    [ngClass]="{ 'flex-1 text-center uppercase': !isIconVisible }"
+    class="text-white font-bold mt-[1px] pt-[1px] text-lg"
+  >
+    {{ type.name | titlecase }}
+  </span>  
 </app-badge>

@@ -1,10 +1,10 @@
 import { CommonModule, NgOptimizedImage  } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { BadgeComponent } from '@components/atoms';
+import { HelperService } from '@services/application';
 import { Type as TType } from '@interfaces/domain';
 import { TYPES_COLORS } from '@constants';
 import { Type } from '@models/domain';
-import { HelperService } from '@services/application';
 
 @Component({
   selector: 'app-type-badge',
