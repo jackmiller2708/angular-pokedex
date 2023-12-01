@@ -41,8 +41,4 @@ export class PokemonService implements IResourceService<TPokemon> {
       .get<INamedAPIResourceList>(this._remoteService, { params })
       .pipe(namedResourceToResource(_toPokemonReq));
   }
-
-  getEncounterAreas(nameOrId: string) {
-    throw new Error('Method not implemented!');
-  }
 }
