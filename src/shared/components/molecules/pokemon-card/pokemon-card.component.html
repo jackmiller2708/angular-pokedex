@@ -10,7 +10,7 @@
       
       <div class="grid grid-cols-2 gap-1">
         @for (entry of dataSource.types; track $index) {
-          <app-type-badge [type]="entry.type.name" [isIconVisible]="true"></app-type-badge>
+          <app-type-badge [type]="entry.type.name" [isIconVisible]="true" />
         }
       </div>
     </div>
