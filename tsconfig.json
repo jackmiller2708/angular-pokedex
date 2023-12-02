@@ -26,6 +26,7 @@
       "@interfaces/*": ["./src/shared/data/interfaces/*"],
       "@models/*": ["./src/shared/data/models/*"],
       "@components/*": ["./src/shared/components/*"],
+      "@pipes": ["./src/shared/pipes/index.ts"],
       "@environments/*": ["./src/environments/*"],
       "@constants": ["./src/shared/data/constants/index.ts"]
     }
