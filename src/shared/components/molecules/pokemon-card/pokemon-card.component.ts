@@ -22,6 +22,7 @@ const imports = [
 })
 export class PokemonCardComponent {
   private _dataSource: Pokemon | undefined;
+  private _maxIdDigits: number | undefined;
 
   @Input({ required: true })
   set dataSource(value: Pokemon) {
@@ -30,5 +31,14 @@ export class PokemonCardComponent {
 
   get dataSource(): Pokemon | undefined {
     return this._dataSource;
+  }
+
+  @Input()
+  set maxIdDigits(value: number) {
+    this._maxIdDigits = value;
+  }
+
+  get maxIdDigits(): number {
+    return this._maxIdDigits ?? 4;
   }
 }
