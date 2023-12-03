@@ -1,5 +1,5 @@
+import { Component, Input, HostBinding, EventEmitter, HostListener, Output } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { Component, Input, HostBinding } from '@angular/core';
 import { CardComponent } from '@components/atoms';
 import { AssetInfo } from '@interfaces/application';
 import { Region } from '@interfaces/domain';
@@ -13,6 +13,9 @@ import { Region } from '@interfaces/domain';
 })
 export class RegionCardComponent {
   private _dataSource: Region | undefined;
+
+  @Output()
+  readonly onClick: EventEmitter<Region>;
 
   @HostBinding('class')
   private get _classes(): string[] {
@@ -37,5 +40,14 @@ export class RegionCardComponent {
 
   get asset(): AssetInfo | undefined {
     return this.dataSource?.assetsInfo.first();
+  }
+
+  constructor() {
+    this.onClick = new EventEmitter();
+  }
+
+  @HostListener('click')
+  private onHostClick(): void {
+    this.onClick.emit(this._dataSource);
   }
 }
