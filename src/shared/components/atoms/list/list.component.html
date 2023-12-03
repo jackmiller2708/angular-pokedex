@@ -1,10 +1,10 @@
 @if (template) { 
   @for (item of dataSource; track $index) {
-    <div
+    <ng-container
       [ngClass]="itemClass"
       [ngTemplateOutlet]="template"
       [ngTemplateOutletContext]="{ item: item }"
-    ></div>
+    />
   } 
 }
 
