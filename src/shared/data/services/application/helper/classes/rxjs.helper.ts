@@ -1,5 +1,5 @@
 import { ObserverNextHandler, ObservableRegistrar } from '../interfaces';
-import { Observable, takeUntil } from 'rxjs';
+import { Observable, takeUntil, pipe, filter, UnaryFunction } from 'rxjs';
 
 export class RxJSHelper {
   private readonly _operators: Readonly<CustomOperator>;
@@ -23,4 +23,10 @@ export class RxJSHelper {
   }
 }
 
-class CustomOperator {}
+class CustomOperator {
+  takeMeaningfulValue<T>(): UnaryFunction<Observable<T | undefined>, Observable<T>> {
+    return pipe<Observable<T | undefined>, Observable<T>>(
+      filter((value): value is T => !!value)
+    );
+  }
+}
