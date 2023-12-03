@@ -1,13 +1,18 @@
 @if (dataSource) {
   <app-card class="relative">
-    <img 
-      [ngSrc]="asset!.location" 
-      [alt]="asset!.name" 
-      height="500" 
-      width="281" 
-    />
+    <div 
+      class="relative h-[392px] w-[281px] overflow-hidden before:absolute before:h-full before:w-full before:left-0 before:bottom-0 before:bg-slate-800 before:opacity-10 before:z-10 before:group-hover:opacity-20 before:transition-colors"
+    >
+      <img 
+        class="group-hover:scale-110 transition-transform"
+        [ngSrc]="asset!.location" 
+        [alt]="asset!.name" 
+        height="392" 
+        width="281" 
+      />
+    </div>
     <span 
-      class="absolute bottom-2 text-3xl text-[#fff9fd] font-semibold uppercase"
+      class="absolute bottom-2 text-3xl text-[#fff9fd] font-semibold uppercase z-20"
     >
         {{ dataSource.name }}
     </span>

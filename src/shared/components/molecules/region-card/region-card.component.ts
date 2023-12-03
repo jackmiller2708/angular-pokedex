@@ -1,5 +1,5 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, HostBinding } from '@angular/core';
 import { CardComponent } from '@components/atoms';
 import { AssetInfo } from '@interfaces/application';
 import { Region } from '@interfaces/domain';
@@ -13,6 +13,18 @@ import { Region } from '@interfaces/domain';
 })
 export class RegionCardComponent {
   private _dataSource: Region | undefined;
+
+  @HostBinding('class')
+  private get _classes(): string[] {
+    return [
+      'flex',
+      'flex-col',
+      'items-center',
+      'group',
+      'cursor-pointer',
+      'select-none',
+    ];
+  }
 
   @Input({ required: true })
   set dataSource(value: Region) {
