@@ -11,6 +11,14 @@ import { CommonModule } from '@angular/common';
 export class CardComponent {
   @HostBinding('class')
   private get _classes(): string[] {
-    return ['flex', 'flex-col', 'items-center', 'w-fit', 'border', 'rounded-sm'];
+    return [
+      'flex',
+      'flex-col',
+      'items-center',
+      'w-fit',
+      'border',
+      'rounded-md',
+      'overflow-hidden'
+    ];
   }
 }
