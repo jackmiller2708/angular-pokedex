@@ -23,6 +23,7 @@ export class RegionCardComponent {
       'flex',
       'flex-col',
       'items-center',
+      'w-fit',
       'group',
       'cursor-pointer',
       'select-none',
