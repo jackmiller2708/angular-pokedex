@@ -1,0 +1,15 @@
+@if (dataSource) {
+  <app-card class="relative">
+    <img 
+      [ngSrc]="asset!.location" 
+      [alt]="asset!.name" 
+      height="500" 
+      width="281" 
+    />
+    <span 
+      class="absolute bottom-2 text-3xl text-[#fff9fd] font-semibold uppercase"
+    >
+        {{ dataSource.name }}
+    </span>
+  </app-card>
+}
