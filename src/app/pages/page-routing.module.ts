@@ -1,7 +1,9 @@
 import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './components';
 import { NgModule } from '@angular/core';
 
 const routes: Routes = [
+  { path: '', component: HomeComponent },
   {
     path: ':region',
     loadComponent: () =>

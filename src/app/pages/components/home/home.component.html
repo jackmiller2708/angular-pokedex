@@ -1,0 +1,15 @@
+<h1>Choose your region</h1>
+
+@if (regions) {
+  <app-list 
+    class="grid grid-cols-[repeat(auto-fit,_minmax(min(281px,_100%),_1fr))] gap-2"
+    [dataSource]="regions.results" 
+    [template]="regionTemplate"
+  >
+    <ng-template #regionTemplate let-item="item">
+      <a [routerLink]="'/' + item.name">
+        <app-region-card [dataSource]="item"></app-region-card>
+      </a>
+    </ng-template>
+  </app-list>
+}

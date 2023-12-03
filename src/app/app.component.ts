@@ -1,14 +1,14 @@
-import { Component } from '@angular/core';
+import { AppStateService } from './services';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [CommonModule, RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  imports: [CommonModule, RouterOutlet],
+  providers: [AppStateService],
+  standalone: true,
 })
-export class AppComponent {
-  title = 'pokedex';
-}
+export class AppComponent {}
