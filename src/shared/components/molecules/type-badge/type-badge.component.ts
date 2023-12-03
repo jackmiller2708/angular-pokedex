@@ -6,6 +6,11 @@ import { TYPES_COLORS } from '@constants';
 import { PokemonType } from '@interfaces/domain/pokemon';
 import { AssetInfo } from '@interfaces/application/assets';
 
+interface ITypeIcon {
+  name: string,
+  path: string;
+}
+
 @Component({
   selector: 'app-type-badge',
   templateUrl: './type-badge.component.html',
@@ -36,12 +41,15 @@ export class TypeBadgeComponent {
     return this._typeEntry;
   }
 
-  get iconPath(): string {
-    return this._typeAsset?.location ?? '';
+  get icon(): ITypeIcon {
+    return {
+      name: this._typeAsset?.name ?? '',
+      path: this._typeAsset?.location ?? '',
+    };
   }
 
   get color(): string {
-    const colorKey = this._typeAsset?.name ?? '';
+    const colorKey = this._typeEntry?.type.name ?? '';
     const enumObj = this._helper.enum.from(TYPES_COLORS);
 
     return !enumObj.has(colorKey) ? '#000' : enumObj.get(colorKey);

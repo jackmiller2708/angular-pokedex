@@ -5,7 +5,7 @@
     [ngStyle]="{ backgroundColor: color }"
   > 
     @if (isIconVisible) {
-      <img [ngSrc]="iconPath" width="20" height="20" />
+      <img [ngSrc]="icon.path" [alt]="icon.name" width="20" height="20" />
     }
 
     <span 
