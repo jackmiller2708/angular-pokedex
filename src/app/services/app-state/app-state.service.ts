@@ -3,7 +3,7 @@ import { HelperService } from '@services/application';
 import { Injectable } from '@angular/core';
 import { Region } from '@interfaces/domain';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class AppStateService {
   private readonly _selectedRegion: BehaviorSubject<Region | undefined>;
 
