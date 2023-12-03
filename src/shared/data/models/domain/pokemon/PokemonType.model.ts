@@ -20,7 +20,7 @@ const adaptor = (values?: IPokemonTypeDto): TPokemonType => {
     assetsInfo: List([
       AssetInfo({
         name: `${type?.name}-type-icon`,
-        location: `assets/type-icons/${type?.name}.svg`,
+        location: `type-icons/${type?.name}.svg`,
       }),
     ]),
   });

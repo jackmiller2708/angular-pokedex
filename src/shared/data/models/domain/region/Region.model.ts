@@ -36,7 +36,7 @@ const adaptor = (values?: IRegionDto): TRegion => {
     assetsInfo: List([
       AssetInfo({
         name: `${name}-region-poster-art`,
-        location: `assets/regions/${name}.jpg`,
+        location: `regions/${name}.jpg`,
       }),
     ]),
     mainGeneration: NamedResource(main_generation),
