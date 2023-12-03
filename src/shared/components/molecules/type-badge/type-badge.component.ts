@@ -2,9 +2,9 @@ import { CommonModule, NgOptimizedImage  } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { BadgeComponent } from '@components/atoms';
 import { HelperService } from '@services/application';
-import { Type as TType } from '@interfaces/domain';
 import { TYPES_COLORS } from '@constants';
-import { Type } from '@models/domain';
+import { PokemonType } from '@interfaces/domain/pokemon';
+import { AssetInfo } from '@interfaces/application/assets';
 
 @Component({
   selector: 'app-type-badge',
@@ -15,7 +15,8 @@ import { Type } from '@models/domain';
 })
 export class TypeBadgeComponent {
   private _isIconVisible: boolean;
-  private _type: TType;
+  private _typeEntry: PokemonType | undefined;
+  private _typeAsset: AssetInfo | undefined;
 
   @Input()
   set isIconVisible(value: boolean) {
@@ -27,26 +28,26 @@ export class TypeBadgeComponent {
   }
 
   @Input({ required: true })
-  set type(value: string) {
-    const upperCasedValue = value.toUpperCase();
-
-    if (!this._helper.enum.has(TYPES_COLORS, upperCasedValue)) {
-      return;
-    }
-
-    this._type = Type({
-      name: value,
-      color: this._helper.enum.get(TYPES_COLORS, upperCasedValue),
-      iconFileName: `${value}.svg`,
-    });
+  set entry(value: PokemonType) {
+    this._typeEntry = value;
   }
 
-  get type(): TType {
-    return this._type;
+  get entry(): PokemonType | undefined {
+    return this._typeEntry;
+  }
+
+  get iconPath(): string {
+    return this._typeAsset?.location ?? '';
+  }
+
+  get color(): string {
+    const colorKey = this._typeAsset?.name ?? '';
+    const enumObj = this._helper.enum.from(TYPES_COLORS);
+
+    return !enumObj.has(colorKey) ? '#000' : enumObj.get(colorKey);
   }
 
   constructor(private readonly _helper: HelperService) {
-    this._type = Type();
     this._isIconVisible = false;
   }
 }

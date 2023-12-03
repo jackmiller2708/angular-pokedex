@@ -1,16 +1,18 @@
-<app-badge 
-  class="flex gap-1 items-center w-28 !pb-[2px] !pt-0 pointer-events-none"
-  [ngClass]="{ '!pl-1': isIconVisible, ' !px-0': !isIconVisible }"
-  [ngStyle]="{ backgroundColor: type.color }"
-> 
-  @if (isIconVisible) {
-    <img [ngSrc]="'assets/type-icons/' + type.iconFileName" width="20" height="20" />
-  }
+@if (entry) {
+  <app-badge 
+    class="flex gap-1 items-center w-28 !pb-[2px] !pt-0 pointer-events-none"
+    [ngClass]="{ '!pl-1': isIconVisible, ' !px-0': !isIconVisible }"
+    [ngStyle]="{ backgroundColor: color }"
+  > 
+    @if (isIconVisible) {
+      <img [ngSrc]="iconPath" width="20" height="20" />
+    }
 
-  <span 
-    [ngClass]="{ 'flex-1 text-center uppercase': !isIconVisible }"
-    class="text-white font-bold mt-[1px] pt-[1px] text-lg"
-  >
-    {{ type.name | titlecase }}
-  </span>  
-</app-badge>
+    <span 
+      [ngClass]="{ 'flex-1 text-center uppercase': !isIconVisible }"
+      class="text-white font-bold mt-[1px] pt-[1px] text-lg"
+    >
+      {{ entry.type.name | titlecase }}
+    </span>  
+  </app-badge>
+}
