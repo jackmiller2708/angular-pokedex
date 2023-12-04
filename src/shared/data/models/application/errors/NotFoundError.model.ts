@@ -2,7 +2,7 @@ import { IResponseError } from '@interfaces/application/errors/IResponseError.in
 import { ErrorCode } from '@constants';
 import { Record } from 'immutable';
 
-export const NotFoundError = Record<IResponseError>({
+export class NotFoundError extends Record<IResponseError>({
   code: ErrorCode.NOT_FOUND,
   message: 'Not Found',
-});
+}) {}
