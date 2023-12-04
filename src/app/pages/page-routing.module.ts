@@ -1,3 +1,4 @@
+import { pokedexParamGuard, regionParamGuard } from '@app/guards';
 import { RouterModule, Routes } from '@angular/router';
 import { pokemonResolver } from './components/pokemon/resolver/pokemon.resolver';
 import { pokedexResolver } from './components/pokedex/resolver/pokedex.resolver';
@@ -26,6 +27,7 @@ const routes: Routes = [
       import('./components/pokedex/pokedex.component').then(
         (c) => c.PokedexComponent
       ),
+    canActivate: [regionParamGuard],
     resolve: { dataSource: pokedexResolver },
   },
   {
@@ -34,8 +36,10 @@ const routes: Routes = [
       import('./components/pokemon/pokemon.component').then(
         (c) => c.PokemonComponent
       ),
+    canActivate: [regionParamGuard, pokedexParamGuard],
     resolve: { dataSource: pokemonResolver },
   },
+  { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 
 @NgModule({

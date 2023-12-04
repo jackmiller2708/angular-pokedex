@@ -1,4 +1,4 @@
-import { ActivatedRoute, Data } from '@angular/router';
+import { ActivatedRoute, Data, RouterModule } from '@angular/router';
 import { IObserverSafe } from '@interfaces/application';
 import { HelperService } from '@services/application';
 import { CommonModule } from '@angular/common';
@@ -10,7 +10,7 @@ import { Region } from '@interfaces/domain';
   selector: 'app-region',
   templateUrl: './region.component.html',
   styleUrl: './region.component.scss',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   standalone: true,
 })
 export class RegionComponent implements IObserverSafe {
