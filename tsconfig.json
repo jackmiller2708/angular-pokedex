@@ -28,7 +28,8 @@
       "@components/*": ["./src/shared/components/*"],
       "@pipes": ["./src/shared/pipes/index.ts"],
       "@environments/*": ["./src/environments/*"],
-      "@constants": ["./src/shared/data/constants/index.ts"]
+      "@constants": ["./src/shared/data/constants/index.ts"],
+      "@interceptors": ["./src/shared/interceptors/index.ts"]
     }
   },
   "angularCompilerOptions": {
