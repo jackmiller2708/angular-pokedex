@@ -46,7 +46,6 @@ export class RegionComponent implements IObserverSafe {
   }
 
   private _onRegionData(data: Data): void {
-    console.log(data['dataSource'])
-    // this._dataSource = data['dataSource'];
+    this._dataSource = data['dataSource'];
   }
 }
