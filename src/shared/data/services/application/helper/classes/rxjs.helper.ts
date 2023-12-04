@@ -32,6 +32,9 @@ export class RxJSHelper {
 }
 
 class CustomOperator {
+  /**
+   * Allows only truthy values.
+   */
   takeMeaningfulValue<T>(): UnaryFunction<Observable<T | undefined>, Observable<T>> {
     return pipe<Observable<T | undefined>, Observable<T>>(
       filter((value): value is T => !!value)
