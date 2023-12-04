@@ -1,5 +1,5 @@
-import { ObserverNextHandler, ObservableRegistrar } from '../interfaces';
 import { Observable, takeUntil, pipe, filter, UnaryFunction } from 'rxjs';
+import { ObserverNextHandler, ObservableRegistrar } from '../interfaces';
 
 export class RxJSHelper {
   private readonly _operators: Readonly<CustomOperator>;
@@ -12,6 +12,14 @@ export class RxJSHelper {
     this._operators = Object.freeze(new CustomOperator());
   }
 
+  /**
+   * This is a factory function that will generate a register function which
+   * when used with an observable will automatically subscribes and then unsubscribes
+   * when the component is destroyed.
+   * @param this The component instance.
+   * @param onDestroy$ The onDestroy$ signifier.
+   * @returns A register function.
+   */
   observableRegistrarFactory(this: ThisType<any>, onDestroy$: Observable<void>): ObservableRegistrar {
     if (this instanceof RxJSHelper) {
       throw 'Invalid method invocation';
