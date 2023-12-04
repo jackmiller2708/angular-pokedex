@@ -1,11 +1,10 @@
-import { Observable, UnaryFunction, forkJoin, map, pipe, switchMap, tap, catchError, of } from 'rxjs';
+import { Observable, UnaryFunction, forkJoin, map, pipe, switchMap, tap, catchError } from 'rxjs';
 import { INamedAPIResource, INamedAPIResourceList } from '@interfaces/dtos';
 import { responseErrorFactory } from '@models/application/errors/ResponseErrorFactory.model';
 import { ResourceListFactory } from '@models/application/utilities';
 import { HttpErrorResponse } from '@angular/common/http';
-import { IResponseError } from '@interfaces/application/errors';
-import { List, RecordOf } from 'immutable';
 import { ResourceList } from '@interfaces/application/utilities';
+import { List } from 'immutable';
 
 export class HttpClientHelper {
   namedResourceToResource<T>(mapper: (data: INamedAPIResource) => Observable<T>): UnaryFunction<Observable<INamedAPIResourceList>, Observable<ResourceList<T>>> {
