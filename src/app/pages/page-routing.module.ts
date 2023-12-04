@@ -1,9 +1,14 @@
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components';
+import { homeResolver } from './components/home/resolver/home.resolver';
 import { NgModule } from '@angular/core';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  {
+    path: '',
+    component: HomeComponent,
+    resolve: { dataSource: homeResolver },
+  },
   {
     path: ':region',
     loadComponent: () =>

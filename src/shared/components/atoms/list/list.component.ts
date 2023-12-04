@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input, TemplateRef } from '@angular/core';
+import { Component, Input, TemplateRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { List } from 'immutable';
 
@@ -14,11 +14,6 @@ export class ListComponent<T> {
   private _dataSource: List<T>;
   private _itemClass: string | undefined;
   private _styleClass: string | undefined;
-
-  @HostBinding('class')
-  private get _classes(): string[] {
-    return this.styleClass.split(' ');
-  }
 
   @Input({ required: true })
   set dataSource(value: List<T>) {

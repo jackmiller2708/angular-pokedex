@@ -1,3 +1,7 @@
 @if (dataSource) {
   <p>{{ dataSource.name }}</p>
+
+  @for (pokedex of dataSource.pokedexes; track $index) {
+    <div>{{ pokedex.name }}</div>
+  }
 }
