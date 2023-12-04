@@ -1,6 +1,8 @@
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './components';
+import { pokemonResolver } from './components/pokemon/resolver/pokemon.resolver';
+import { pokedexResolver } from './components/pokedex/resolver/pokedex.resolver';
 import { regionResolver } from './components/region/resolver/region.resolver';
+import { HomeComponent } from './components';
 import { homeResolver } from './components/home/resolver/home.resolver';
 import { NgModule } from '@angular/core';
 
@@ -16,7 +18,7 @@ const routes: Routes = [
       import('./components/region/region.component').then(
         (c) => c.RegionComponent
       ),
-    resolve: { dataSource: regionResolver }
+    resolve: { dataSource: regionResolver },
   },
   {
     path: ':region/:pokedex',
@@ -24,6 +26,7 @@ const routes: Routes = [
       import('./components/pokedex/pokedex.component').then(
         (c) => c.PokedexComponent
       ),
+    resolve: { dataSource: pokedexResolver },
   },
   {
     path: ':region/:pokedex/:pokemon',
@@ -31,6 +34,7 @@ const routes: Routes = [
       import('./components/pokemon/pokemon.component').then(
         (c) => c.PokemonComponent
       ),
+    resolve: { dataSource: pokemonResolver },
   },
 ];
 

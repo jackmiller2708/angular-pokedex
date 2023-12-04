@@ -1,9 +1,11 @@
 import { ActivatedRoute, Data, RouterModule } from '@angular/router';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { IObserverSafe, ResourceList } from '@interfaces/application';
+import { Component, HostBinding } from '@angular/core';
 import { RegionCardComponent } from '@components/molecules';
 import { ListComponent } from '@components/atoms';
-import { ResourceList } from '@interfaces/application';
+import { HelperService } from '@services/application';
+import { Subject } from 'rxjs';
 import { Region } from '@interfaces/domain';
 
 const imports = [
@@ -21,7 +23,8 @@ const imports = [
   imports,
   standalone: true,
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements IObserverSafe {
+  private readonly _ngDestroy$: Subject<void>;
   private _regions: ResourceList<Region> | undefined;
 
   @HostBinding('class')
@@ -33,10 +36,28 @@ export class HomeComponent implements OnInit {
     return this._regions;
   }
 
-  constructor(private readonly _activatedRoute: ActivatedRoute) {}
+  constructor(
+    private readonly _activatedRoute: ActivatedRoute,
+    private readonly _helper: HelperService
+  ) {
+    this._ngDestroy$ = new Subject();
+  }
 
   ngOnInit(): void {
-    this._activatedRoute.data.subscribe(this._onRegionData.bind(this));
+    this._initData();
+  }
+
+  ngOnDestroy(): void {
+    this._ngDestroy$.next();
+  }
+
+  private _initData(): void {
+    const { observableRegistrarFactory } = this._helper.rxjs;
+    const { data } = this._activatedRoute;
+
+    const register = observableRegistrarFactory.call(this, this._ngDestroy$);
+
+    register(data, this._onRegionData);
   }
 
   private _onRegionData(data: Data): void {
