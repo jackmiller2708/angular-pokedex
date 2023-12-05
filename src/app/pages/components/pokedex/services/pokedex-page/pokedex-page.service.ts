@@ -10,7 +10,7 @@ import { List } from 'immutable';
 export class PokedexPageService {
   constructor(private readonly _pokemonService: PokemonService) {}
 
-  extendPokemonEntry(): UnaryFunction<Observable<Data>, Observable<Pokedex>> {
+  toPokedex(): UnaryFunction<Observable<Data>, Observable<Pokedex>> {
     let dataSource: Pokedex;
 
     const savePokedex = (data: Data) => {

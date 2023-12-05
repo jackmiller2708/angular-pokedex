@@ -56,7 +56,7 @@ export class PokedexComponent implements IObserverSafe {
     const { data } = this._activatedRoute;
 
     const register = observableRegistrarFactory.call(this, this._ngDestroy$);
-    const data$ = data.pipe(this._pokedexPageService.extendPokemonEntry());
+    const data$ = data.pipe(this._pokedexPageService.toPokedex());
 
     register(data$, this._onPokedexData);
   }
