@@ -1,6 +1,6 @@
-import { IHasAssets } from '@interfaces/application/assets';
 import { Name, NamedResource } from '../utilities';
 import { List, RecordOf } from 'immutable';
+import { IHasAssets } from '@interfaces/application/assets';
 
 export interface IRegion extends IHasAssets {
   id: number;

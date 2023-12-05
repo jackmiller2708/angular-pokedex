@@ -4,6 +4,7 @@ import { IRegion as IRegionDto } from '@interfaces/dtos';
 import { NamedResource } from '../utilities';
 import { AssetInfo } from '@models/application/assets';
 import { List } from 'immutable';
+import { Name } from '../utilities/Name.model';
 
 const defaultValues: IRegion = {
   id: 0,
@@ -30,6 +31,7 @@ const adaptor = (values?: IRegionDto): TRegion => {
   return Region({
     ...others,
     name,
+    names: List(names?.map(Name.adaptor)),
     locations: List(locations?.map(NamedResource)),
     versionGroups: List(version_groups?.map(NamedResource)),
     pokedexes: List(pokedexes?.map(NamedResource)),
