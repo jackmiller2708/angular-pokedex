@@ -1,6 +1,6 @@
+import { CanActivateFn, Router } from '@angular/router';
 import { catchError, of, map } from 'rxjs';
 import { RegionService } from '@services/domain';
-import { CanActivateFn, Router } from '@angular/router';
 import { inject } from '@angular/core';
 import { Region } from '@interfaces/domain';
 
