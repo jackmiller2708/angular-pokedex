@@ -1,1 +1,9 @@
-<p>pokedex works!</p>
+@if (dataSource) {
+  <span>Pokedex: {{ dataSource.name }}</span>
+
+  <ul>
+    @for (pokemon of dataSource.pokemonEntries; track $index) {
+      <li>{{ pokemon.pokemonSpecies.name }}</li>
+    }
+  </ul>
+}
