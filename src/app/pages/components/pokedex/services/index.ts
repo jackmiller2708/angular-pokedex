@@ -1,0 +1,1 @@
+export * from './pokedex-page/pokedex-page.service'

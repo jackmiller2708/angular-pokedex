@@ -3,7 +3,10 @@
 
   <ul>
     @for (pokemon of dataSource.pokemonEntries; track $index) {
-      <li>{{ pokemon.pokemonSpecies.name }}</li>
+      <app-pokemon-card 
+        [dataSource]="$any(pokemon)" 
+        [maxIdDigits]="countDigits"
+      ></app-pokemon-card>
     }
   </ul>
 }

@@ -11,7 +11,7 @@ const defaultValues: IPokedex = {
   isMainSeries: false,
   descriptions: List(),
   names: List(),
-  pokemonEntries: List(),
+  pokemonEntries: List<any>(),
   region: NamedResource(),
   versionGroups: List(),
 };

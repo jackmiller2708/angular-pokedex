@@ -4,8 +4,8 @@
     [ngClass]="{ '!pl-1': isIconVisible, ' !px-0': !isIconVisible }"
     [ngStyle]="{ backgroundColor: color }"
   > 
-    @if (isIconVisible) {
-      <img [ngSrc]="icon.path" [alt]="icon.name" width="20" height="20" />
+    @if (isIconVisible && typeAsset) {
+      <img [ngSrc]="typeAsset.location" [alt]="typeAsset.name" width="20" height="20" />
     }
 
     <span 
