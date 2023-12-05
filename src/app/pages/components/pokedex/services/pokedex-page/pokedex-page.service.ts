@@ -1,4 +1,4 @@
-import { UnaryFunction, Observable, forkJoin, pipe, tap, switchMap, map, catchError, EMPTY } from 'rxjs';
+import { UnaryFunction, Observable, forkJoin, pipe, tap, switchMap, map, catchError, of } from 'rxjs';
 import { Pokedex, Pokemon } from '@interfaces/domain';
 import { PokemonService } from '@services/domain';
 import { PokemonEntry } from '@interfaces/domain/pokedex';
@@ -13,15 +13,17 @@ export class PokedexPageService {
   extendPokemonEntry(): UnaryFunction<Observable<Data>, Observable<Pokedex>> {
     let dataSource: Pokedex;
 
-    const savePokedex = (data: Data) => (dataSource = data['dataSource']);
-
-    const entryToPokemon = ({ pokemonSpecies }: PokemonEntry) => {
-      return this._pokemonService
-        .getResource(pokemonSpecies.name)
-        .pipe(catchError(() => EMPTY));
+    const savePokedex = (data: Data) => {
+      dataSource = data['dataSource'];
     };
 
     const extendToPokemon = (data: Data) => {
+      const entryToPokemon = ({ pokemonSpecies }: PokemonEntry) => {
+        return this._pokemonService
+          .getResource(pokemonSpecies.name)
+          .pipe(catchError(() => of(undefined)));
+      };
+
       return forkJoin(
         (data['dataSource'].pokemonEntries as List<PokemonEntry>)
           .map(entryToPokemon)
@@ -29,11 +31,11 @@ export class PokedexPageService {
       );
     };
 
-    const mapPokemonList = (pokemonList: Pokemon[]) => {
-      return dataSource.set(
-        'pokemonEntries',
-        List(pokemonList.filter((pokemon) => !!pokemon))
-      );
+    const mapPokemonList = (mixedList: (Pokemon | undefined)[]) => {
+      const takeMeaningfulValue = (item: Pokemon | undefined): item is Pokemon => !!item;
+      const pokemonList = mixedList.filter(takeMeaningfulValue);
+
+      return dataSource.set('pokemonEntries', List(pokemonList));
     };
 
     return pipe(

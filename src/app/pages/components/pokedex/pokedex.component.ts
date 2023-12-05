@@ -48,7 +48,7 @@ export class PokedexComponent implements IObserverSafe {
 
   private _onPokedexData(data: Pokedex): void {
     this._dataSource = data;
-    this._countDigits = data.pokemonEntries.size.toString().length;
+    this._countDigits = this._helper.getNumDigits(data.pokemonEntries.size);
   }
 
   private _initData(): void {

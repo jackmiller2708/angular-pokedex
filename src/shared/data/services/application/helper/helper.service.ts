@@ -24,4 +24,8 @@ export class HelperService {
     this._rxjs = Object.freeze(new RxJSHelper());
     this._enum = Object.freeze(new EnumHelper());
   }
+
+  getNumDigits(num: number): number {
+    return (Math.log(num) * Math.LOG10E + 1) | 0;
+  }
 }
