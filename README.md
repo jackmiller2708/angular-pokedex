@@ -1,5 +1,7 @@
 # Pokedex
 
+[![codecov](https://codecov.io/gh/jackmiller2708/playground/graph/badge.svg?token=E924DW7VTG)](https://codecov.io/gh/jackmiller2708/playground)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.0.
 
 ## Development server
