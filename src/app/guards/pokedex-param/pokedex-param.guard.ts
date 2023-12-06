@@ -17,7 +17,7 @@ export const pokedexParamGuard: CanActivateFn = (route, routerSnapshot) => {
     isValid ? isValid : router.createUrlTree(['/']);
 
   return !pokedex
-    ? false
+    ? router.createUrlTree(['/'])
     : inject(PokedexService)
         .getResource(pokedex)
         .pipe(catchError(onInvalidPokedex), map(onPokedex), map(onResult));

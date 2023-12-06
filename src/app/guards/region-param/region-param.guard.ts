@@ -17,7 +17,7 @@ export const regionParamGuard: CanActivateFn = (route, routerSnapshot) => {
     isValid ? isValid : router.createUrlTree(['/']);
 
   return !region
-    ? false
+    ? router.createUrlTree(['/'])
     : inject(RegionService)
         .getResource(region)
         .pipe(catchError(onInvalidRegion), map(onRegion), map(onResult));
