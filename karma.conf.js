@@ -30,7 +30,13 @@ module.exports = function (config) {
       reporters: [{ type: "cobertura" }, { type: "text-summary" }],
     },
     reporters: ["progress", "kjhtml"],
-    browsers: ["Chrome"],
+    browsers: ["Chrome", "ChromeHeadlessCustom"],
     restartOnFileChange: true,
+    customLaunchers: {
+      ChromeHeadlessCustom: {
+        base: "ChromeHeadless",
+        flags: ["--no-sandbox", "--disable-gpu"],
+      },
+    },
   });
 };
