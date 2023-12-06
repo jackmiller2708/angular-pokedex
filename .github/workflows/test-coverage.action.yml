@@ -20,6 +20,9 @@ jobs:
 
       - name: Run tests
         run: npm run test
+      
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Code Coverage Report
         if: always()
