@@ -1,10 +1,9 @@
+import { responseErrorInterceptor } from './response-error.interceptor';
 import { TestBed } from '@angular/core/testing';
 import { HttpInterceptorFn } from '@angular/common/http';
 
-import { responseErrorInterceptor } from './response-error.interceptor';
-
 describe('responseErrorInterceptor', () => {
-  const interceptor: HttpInterceptorFn = (req, next) => 
+  const interceptor: HttpInterceptorFn = (req, next) =>
     TestBed.runInInjectionContext(() => responseErrorInterceptor(req, next));
 
   beforeEach(() => {

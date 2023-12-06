@@ -1,11 +1,12 @@
-import { TestBed } from '@angular/core/testing';
-import { ResolveFn } from '@angular/router';
-
+import { ResourceList } from '@interfaces/application';
 import { homeResolver } from './home.resolver';
+import { ResolveFn } from '@angular/router';
+import { TestBed } from '@angular/core/testing';
+import { Region } from '@interfaces/domain';
 
 describe('homeResolver', () => {
-  const executeResolver: ResolveFn<boolean> = (...resolverParameters) => 
-      TestBed.runInInjectionContext(() => homeResolver(...resolverParameters));
+  const executeResolver: ResolveFn<ResourceList<Region>> = (...resolverParameters) =>
+    TestBed.runInInjectionContext(() => homeResolver(...resolverParameters));
 
   beforeEach(() => {
     TestBed.configureTestingModule({});

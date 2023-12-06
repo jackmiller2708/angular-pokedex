@@ -1,11 +1,10 @@
-import { TestBed } from '@angular/core/testing';
-import { CanMatchFn } from '@angular/router';
-
 import { pokedexParamGuard } from './pokedex-param.guard';
+import { CanActivateFn } from '@angular/router';
+import { TestBed } from '@angular/core/testing';
 
 describe('pokedexParamGuard', () => {
-  const executeGuard: CanMatchFn = (...guardParameters) => 
-      TestBed.runInInjectionContext(() => pokedexParamGuard(...guardParameters));
+  const executeGuard: CanActivateFn = (...guardParameters) =>
+    TestBed.runInInjectionContext(() => pokedexParamGuard(...guardParameters));
 
   beforeEach(() => {
     TestBed.configureTestingModule({});

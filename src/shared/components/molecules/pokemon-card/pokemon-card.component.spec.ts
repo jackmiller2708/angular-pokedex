@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { PokemonCardComponent } from './pokemon-card.component';
 
 describe('PokemonCardComponent', () => {
@@ -8,10 +7,9 @@ describe('PokemonCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PokemonCardComponent]
-    })
-    .compileComponents();
-    
+      imports: [PokemonCardComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(PokemonCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -1,11 +1,10 @@
-import { TestBed } from '@angular/core/testing';
-import { CanMatchFn } from '@angular/router';
-
 import { regionParamGuard } from './region-param.guard';
+import { CanActivateFn } from '@angular/router';
+import { TestBed } from '@angular/core/testing';
 
 describe('regionParamGuard', () => {
-  const executeGuard: CanMatchFn = (...guardParameters) => 
-      TestBed.runInInjectionContext(() => regionParamGuard(...guardParameters));
+  const executeGuard: CanActivateFn = (...guardParameters) =>
+    TestBed.runInInjectionContext(() => regionParamGuard(...guardParameters));
 
   beforeEach(() => {
     TestBed.configureTestingModule({});

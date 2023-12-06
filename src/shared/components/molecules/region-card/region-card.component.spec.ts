@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { RegionCardComponent } from './region-card.component';
 
 describe('RegionCardComponent', () => {
@@ -8,10 +7,9 @@ describe('RegionCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RegionCardComponent]
-    })
-    .compileComponents();
-    
+      imports: [RegionCardComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(RegionCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
