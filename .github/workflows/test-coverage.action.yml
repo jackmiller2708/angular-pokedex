@@ -1,8 +1,10 @@
 name: Code Test Coverage Summary
 run-name: ${{ github.actor }} is running code test coverage analysis
 on: [push]
+permissions:
+  pull-requests: write
 jobs:
-  Explore-GitHub-Actions:
+  Test-Coverage:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -31,3 +33,10 @@ jobs:
           indicators: true
           output: both
           thresholds: "60 80"
+
+      - name: Add Coverage PR Comment
+        uses: marocchino/sticky-pull-request-comment@v2
+        if: github.event_name == 'pull_request'
+        with:
+          recreate: true
+          path: code-coverage-results.md
