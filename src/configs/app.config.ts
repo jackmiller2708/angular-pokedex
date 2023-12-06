@@ -4,6 +4,7 @@ import { responseErrorInterceptor } from '@interceptors';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideImageKitLoader } from '@angular/common';
 import { ApplicationConfig } from '@angular/core';
+import { environment } from '@environments/environment';
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
@@ -14,6 +15,6 @@ export const appConfig: ApplicationConfig = {
       withFetch(),
       withInterceptors([responseErrorInterceptor])
     ),
-    provideImageKitLoader('https://ik.imagekit.io/nj123u5yv/'),
+    provideImageKitLoader(environment.cdn.imageKit),
   ],
 };

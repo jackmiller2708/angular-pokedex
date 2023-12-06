@@ -3,6 +3,7 @@ import { mergeApplicationConfig, ApplicationConfig } from '@angular/core';
 import { responseErrorInterceptor } from '@interceptors';
 import { provideServerRendering } from '@angular/platform-server';
 import { provideImageKitLoader } from '@angular/common';
+import { environment } from '@environments/environment';
 import { appConfig } from './app.config';
 
 const serverConfig: ApplicationConfig = {
@@ -12,7 +13,7 @@ const serverConfig: ApplicationConfig = {
       withFetch(),
       withInterceptors([responseErrorInterceptor])
     ),
-    provideImageKitLoader('https://ik.imagekit.io/nj123u5yv/'),
+    provideImageKitLoader(environment.cdn.imageKit),
   ],
 };
 
