@@ -1,12 +1,20 @@
 @if (dataSource) {
   <span>Pokedex: {{ dataSource.name }}</span>
 
-  <ul>
+  <div class="flex flex-wrap gap-2">
     @for (pokemon of dataSource.pokemonEntries; track $index) {
-      <app-pokemon-card 
-        [dataSource]="$any(pokemon)" 
-        [maxIdDigits]="countDigits"
-      ></app-pokemon-card>
+      @defer (on viewport) {
+        <app-pokemon-card 
+          class="h-[294px] w-[254px]"
+          [dataSource]="$any(pokemon)" 
+          [maxIdDigits]="countDigits"
+          [showEntryNo]="true"
+        ></app-pokemon-card>
+      }
+
+      @placeholder { 
+        <div class="h-[294px] w-[254px]"></div>
+      }
     }
-  </ul>
+  </div>
 }

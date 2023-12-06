@@ -3,14 +3,15 @@ import { Pokedex, Pokemon } from '@interfaces/domain';
 import { PokemonService } from '@services/domain';
 import { PokemonEntry } from '@interfaces/domain/pokedex';
 import { Injectable } from '@angular/core';
+import { List, Map } from 'immutable';
 import { Data } from '@angular/router';
-import { List } from 'immutable';
 
 @Injectable()
 export class PokedexPageService {
   constructor(private readonly _pokemonService: PokemonService) {}
 
   toPokedex(): UnaryFunction<Observable<Data>, Observable<Pokedex>> {
+    let pokemonEntries = Map<string, number>();
     let dataSource: Pokedex;
 
     const savePokedex = (data: Data) => {
@@ -18,7 +19,9 @@ export class PokedexPageService {
     };
 
     const extendToPokemon = (data: Data) => {
-      const entryToPokemon = ({ pokemonSpecies }: PokemonEntry) => {
+      const entryToPokemon = ({ pokemonSpecies, entryNumber }: PokemonEntry) => {
+        pokemonEntries = pokemonEntries.set(pokemonSpecies.name, entryNumber);
+
         return this._pokemonService
           .getResource(pokemonSpecies.name)
           .pipe(catchError(() => of(undefined)));
@@ -33,7 +36,11 @@ export class PokedexPageService {
 
     const mapPokemonList = (mixedList: (Pokemon | undefined)[]) => {
       const takeMeaningfulValue = (item: Pokemon | undefined): item is Pokemon => !!item;
-      const pokemonList = mixedList.filter(takeMeaningfulValue);
+      const pokemonList = mixedList
+        .filter(takeMeaningfulValue)
+        .map((pokemon) =>
+          pokemon.set('pokedexEntry', pokemonEntries.get(pokemon.name, 0))
+        );
 
       return dataSource.set('pokemonEntries', List(pokemonList));
     };

@@ -23,6 +23,7 @@ const imports = [
 export class PokemonCardComponent {
   private _dataSource: Pokemon | undefined;
   private _maxIdDigits: number | undefined;
+  private _showEntryNo: boolean;
 
   @Input({ required: true })
   set dataSource(value: Pokemon) {
@@ -40,5 +41,18 @@ export class PokemonCardComponent {
 
   get maxIdDigits(): number {
     return this._maxIdDigits ?? 4;
+  }
+
+  @Input()
+  set showEntryNo(value: boolean) {
+    this._showEntryNo = value;
+  }
+
+  get showEntryNo(): boolean {
+    return this._showEntryNo;
+  }
+
+  constructor() {
+    this._showEntryNo = false;
   }
 }

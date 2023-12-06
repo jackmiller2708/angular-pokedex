@@ -17,6 +17,7 @@ export interface IPokemon {
   order: number;
   isDefault: boolean;
   locationAreaEncounters: string;
+  pokedexEntry?: number,
   sprites: PokemonSprites;
   species: NamedResource;
   types: List<PokemonType>;

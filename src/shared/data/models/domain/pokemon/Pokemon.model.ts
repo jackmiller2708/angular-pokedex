@@ -14,6 +14,7 @@ const defaultValues: IPokemon = {
   order: 0,
   isDefault: false,
   locationAreaEncounters: '',
+  pokedexEntry: undefined,
   sprites: PokemonSprites(),
   species: NamedResource(),
   types: List(),
