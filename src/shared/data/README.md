@@ -1,5 +1,11 @@
 
-This folder contains all the global data-related dependencies, this includes:
+# Data Management Module
+
+This section is titled `Data Management Module` for it contains the application-wide code that will be used to manage and handle most of the data circulating the system.
+
+## Overview
+
+This folder consists of all the global data-related dependencies, this includes:
 
 1. interfaces - contains all global interfaces
     - application - all interfaces that belongs to the application logic.
