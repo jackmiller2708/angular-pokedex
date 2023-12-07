@@ -3,6 +3,7 @@ import { TypeBadgeComponent } from '../type-badge/type-badge.component';
 import { Component, Input } from '@angular/core';
 import { CardComponent } from '@components/atoms';
 import { PokeIdPipe } from '@pipes';
+import { AssetInfo } from '@interfaces/application';
 import { Pokemon } from '@interfaces/domain';
 
 const imports = [
@@ -22,12 +23,14 @@ const imports = [
 })
 export class PokemonCardComponent {
   private _dataSource: Pokemon | undefined;
+  private _pokemonAsset: AssetInfo | undefined;
   private _maxIdDigits: number | undefined;
   private _showEntryNo: boolean;
 
   @Input({ required: true })
   set dataSource(value: Pokemon) {
     this._dataSource = value;
+    this._pokemonAsset = value.assetsInfo.first();
   }
 
   get dataSource(): Pokemon | undefined {
@@ -50,6 +53,10 @@ export class PokemonCardComponent {
 
   get showEntryNo(): boolean {
     return this._showEntryNo;
+  }
+
+  get asset(): AssetInfo | undefined {
+    return this._pokemonAsset;
   }
 
   constructor() {
