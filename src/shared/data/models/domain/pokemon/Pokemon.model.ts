@@ -3,6 +3,7 @@ import { NamedResource, VersionGameIndex } from '../utilities';
 import { IPokemon, Pokemon as TPokemon } from '@interfaces/domain';
 import { IPokemon as IPokemonDto } from '@interfaces/dtos';
 import { AdaptableRecordFactory } from '@models/application/utilities';
+import { AssetInfo } from '@models/application/assets';
 import { List } from 'immutable';
 
 const defaultValues: IPokemon = {
@@ -17,6 +18,7 @@ const defaultValues: IPokemon = {
   pokedexEntry: undefined,
   sprites: PokemonSprites(),
   species: NamedResource(),
+  assetsInfo: List(),
   types: List(),
   stats: List(),
   abilities: List(),
@@ -68,6 +70,12 @@ const adaptor = (value?: IPokemonDto): TPokemon => {
     gameIndices: List(game_indices?.map(VersionGameIndex.adaptor)),
     heldItems: List(held_items?.map(PokemonHeldItem.adaptor)),
     pastTypes: List(past_types?.map(PokemonTypePast.adaptor)),
+    assetsInfo: List([
+      AssetInfo({
+        location: `official-artwork/${id}.png`,
+        name: `${name}-official-artwork`,
+      }),
+    ]),
   });
 };
 

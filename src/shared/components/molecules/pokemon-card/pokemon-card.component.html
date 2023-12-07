@@ -1,6 +1,8 @@
 @if (dataSource) {
   <app-card>
-    <img [src]="dataSource.sprites.officialArtwork" height="200" width="200"/>
+    @if (asset) {
+      <img [ngSrc]="asset.location" [alt]="asset.name" height="200" width="200"/>
+    }
 
     <div class="flex flex-col gap-1 items-center p-3">
       <div>
