@@ -5,7 +5,10 @@ describe('AppStateService', () => {
   let service: AppStateService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [AppStateService],
+    });
+
     service = TestBed.inject(AppStateService);
   });
 
