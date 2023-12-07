@@ -1,5 +1,5 @@
-name: Code Test Coverage Summary
-run-name: ${{ github.actor }} is running code test coverage analysis
+name: Tests
+run-name: ${{ github.actor }} is running code testing
 on: [push]
 permissions:
   pull-requests: write
