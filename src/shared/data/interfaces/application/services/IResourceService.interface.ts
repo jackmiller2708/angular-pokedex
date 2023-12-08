@@ -1,4 +1,5 @@
 import { ResourceList, ResourceListQuery } from '../utilities';
+import { INamedAPIResourceList } from '@interfaces/dtos';
 import { Observable } from 'rxjs';
 
 export interface IResourceService<T> {
@@ -12,5 +13,5 @@ export interface IResourceService<T> {
    * Gets a list of resource based on resource query.
    * @param query
    */
-  getResourceList(query?: ResourceListQuery): Observable<ResourceList<T>>;
+  getResourceList(query?: ResourceListQuery): Observable<ResourceList<T>> | Observable<INamedAPIResourceList>;
 }

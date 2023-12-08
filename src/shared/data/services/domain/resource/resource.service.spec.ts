@@ -1,17 +1,17 @@
 import { HttpClientModule } from '@angular/common/http';
-import { RegionService } from './region.service';
+import { ResourceService } from './resource.service';
 import { TestBed } from '@angular/core/testing';
 
-describe('RegionService', () => {
-  let service: RegionService;
+describe('ResourceService', () => {
+  let service: ResourceService<any>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
-      providers: [RegionService],
+      providers: [ResourceService],
     });
 
-    service = TestBed.inject(RegionService);
+    service = TestBed.inject(ResourceService);
   });
 
   it('should be created', () => {
