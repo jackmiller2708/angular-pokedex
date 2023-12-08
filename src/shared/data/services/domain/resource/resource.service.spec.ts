@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ResourceService } from './resource.service';
 import { TestBed } from '@angular/core/testing';
 
@@ -6,6 +7,7 @@ describe('ResourceService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [HttpClientModule],
       providers: [ResourceService],
     });
 
