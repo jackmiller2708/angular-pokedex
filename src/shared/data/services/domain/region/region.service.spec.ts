@@ -8,6 +8,7 @@ describe('RegionService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
+      providers: [RegionService],
     });
 
     service = TestBed.inject(RegionService);
