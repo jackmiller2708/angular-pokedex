@@ -1,8 +1,8 @@
 import { ResourceListQuery as TResourceListQuery, ResourceList } from '@interfaces/application/utilities';
+import { ResourceProvider, ResourceService } from '../resource/resource.service';
 import { INamedAPIResource, IRegion } from '@interfaces/dtos';
 import { Region as TRegion } from '@interfaces/domain';
 import { IResourceService } from '@interfaces/application/services';
-import { ResourceService } from '../resource/resource.service';
 import { Observable, map } from 'rxjs';
 import { HelperService } from '@services/application';
 import { Injectable } from '@angular/core';
@@ -11,16 +11,17 @@ import { Region } from '@models/domain';
 
 @Injectable({ providedIn: 'root' })
 export class RegionService implements IResourceService<TRegion> {
+  private readonly _resourceProvider: ResourceProvider<IRegion>;
 
   constructor(
     private readonly _resourceService: ResourceService<IRegion>,
     private readonly _helper: HelperService
   ) {
-    this._resourceService.setResourceType(Resource.REGION);
+    this._resourceProvider = this._resourceService.getProvider(Resource.REGION);
   }
 
   getResource(nameOrId: string): Observable<TRegion> {
-    return this._resourceService
+    return this._resourceProvider
       .getResource(nameOrId)
       .pipe(map(Region.adaptor));
   }
@@ -32,7 +33,7 @@ export class RegionService implements IResourceService<TRegion> {
       return this.getResource(name);
     };
 
-    return this._resourceService
+    return this._resourceProvider
       .getResourceList(query)
       .pipe(namedResourceToResource(_toRegionReq));
   }

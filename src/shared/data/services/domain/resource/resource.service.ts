@@ -8,34 +8,32 @@ import { Observable } from 'rxjs';
 import { Resource } from '@models/domain/resource';
 
 @Injectable({ providedIn: 'root' })
-export class ResourceService<T> implements IResourceService<T> {
+export class ResourceService<T> {
+  constructor(private readonly _http: HttpClient) {}
+
+  getProvider(type: Resource): ResourceProvider<T> {
+    return new ResourceProvider(this._http, type);
+  }
+}
+
+export class ResourceProvider<T> implements IResourceService<T> {
   private readonly _remoteService: string;
-  private _resourceType: Resource | undefined;
 
-  private get _resourceRemote(): string {
-    if (!this._resourceType) {
-      throw new Error();
-    }
-
-    return `${this._remoteService}/${this._resourceType}`;
-  }
-
-  constructor(private readonly _http: HttpClient) {
-    this._remoteService = environment.pokemonRemoteServiceBase;
-  }
-
-  setResourceType(type: Resource): void {
-    this._resourceType = type;
+  constructor(
+    private readonly _http: HttpClient,
+    private readonly _type: Resource
+  ) {
+    this._remoteService = `${environment.pokemonRemoteServiceBase}/${this._type}`;
   }
 
   getResource(nameOrId: string): Observable<T> {
-    return this._http.get<T>(`${this._resourceRemote}/${nameOrId}`);
+    return this._http.get<T>(`${this._remoteService}/${nameOrId}`);
   }
 
   getResourceList(query?: TResourceListQuery): Observable<INamedAPIResourceList> {
     const { limit, offset } = query ?? ResourceListQuery();
 
-    return this._http.get<INamedAPIResourceList>(this._resourceRemote, {
+    return this._http.get<INamedAPIResourceList>(this._remoteService, {
       params: { limit, offset },
     });
   }
