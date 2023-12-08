@@ -1,5 +1,5 @@
-import { PokemonService } from './pokemon.service';
 import { HttpClientModule } from '@angular/common/http';
+import { PokemonService } from './pokemon.service';
 import { TestBed } from '@angular/core/testing';
 
 describe('PokemonService', () => {

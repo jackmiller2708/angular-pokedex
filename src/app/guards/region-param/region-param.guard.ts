@@ -1,24 +1,25 @@
 import { CanActivateFn, Router } from '@angular/router';
-import { catchError, of, map } from 'rxjs';
-import { RegionService } from '@services/domain';
+import { catchError, of, map, tap } from 'rxjs';
+import { ResourceService } from '@services/domain';
+import { Resource } from '@models/domain/resource';
+import { IRegion } from '@interfaces/dtos';
 import { inject } from '@angular/core';
-import { Region } from '@interfaces/domain';
 
 export const regionParamGuard: CanActivateFn = (route, routerSnapshot) => {
   const { region } = route.params;
 
   const router = inject(Router);
+  const resourceService = inject(ResourceService<IRegion>).getProvider(Resource.REGION);
   const onInvalidRegion = () => of(false);
 
-  const onRegion = (region: Region | boolean) =>
+  const onRegion = (region: IRegion | boolean) =>
     typeof region === 'boolean' ? region : !!region;
 
   const onResult = (isValid: boolean) =>
     isValid ? isValid : router.createUrlTree(['/']);
-
   return !region
     ? router.createUrlTree(['/'])
-    : inject(RegionService)
+    : resourceService
         .getResource(region)
         .pipe(catchError(onInvalidRegion), map(onRegion), map(onResult));
 };
