@@ -94,6 +94,23 @@
             "scripts": [],
             "karmaConfig": "karma.conf.js"
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "pokedex:build:production",
+              "serveTarget": "pokedex:serve:production"
+            },
+            "development": {
+              "buildTarget": "pokedex:build:development",
+              "serveTarget": "pokedex:serve:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }

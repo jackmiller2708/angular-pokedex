@@ -1,0 +1,11 @@
+{
+  "hosting": [
+    {
+      "target": "pokedex",
+      "source": ".",
+      "frameworksBackend": {
+        "region": "asia-east1"
+      }
+    }
+  ]
+}

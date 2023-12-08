@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "jack-a2-pokedex": {
+      "hosting": {
+        "pokedex": [
+          "jack-a2-pokedex"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "jack-a2-pokedex"
+  }
+}
