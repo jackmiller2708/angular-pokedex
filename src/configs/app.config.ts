@@ -1,9 +1,10 @@
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
+import { ApplicationConfig, importProvidersFrom } from '@angular/core';
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { responseErrorInterceptor } from '@interceptors';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideImageKitLoader } from '@angular/common';
-import { ApplicationConfig } from '@angular/core';
 import { environment } from '@environments/environment';
 import { routes } from './app.routes';
 
@@ -16,5 +17,8 @@ export const appConfig: ApplicationConfig = {
       withInterceptors([responseErrorInterceptor])
     ),
     provideImageKitLoader(environment.cdn.imageKit),
+    importProvidersFrom([
+      provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    ]),
   ],
 };

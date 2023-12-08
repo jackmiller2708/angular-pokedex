@@ -1,5 +1,5 @@
 name: Tests
-run-name: ${{ github.actor }} is running code testing
+run-name: ${{ github.actor }} is running code testing!
 on: [push]
 permissions:
   pull-requests: write
