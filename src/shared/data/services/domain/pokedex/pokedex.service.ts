@@ -1,43 +1,41 @@
 import { IResourceService, ResourceList, ResourceListQuery as TResourceListQuery } from '@interfaces/application';
-import { INamedAPIResource, INamedAPIResourceList, IPokedex } from '@interfaces/dtos';
+import { ResourceProvider, ResourceService } from '../resource/resource.service';
+import { INamedAPIResource, IPokedex } from '@interfaces/dtos';
 import { Pokedex as TPokedex } from '@interfaces/domain';
-import { ResourceListQuery } from '@models/application/utilities';
 import { Observable, map } from 'rxjs';
 import { HelperService } from '@services/application';
-import { environment } from '@environments/environment';
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Resource } from '@models/domain/resource';
 import { Pokedex } from '@models/domain';
 
 @Injectable({ providedIn: 'root' })
 export class PokedexService implements IResourceService<TPokedex> {
-  private readonly _remoteService: string;
+  private readonly _resourceProvider: ResourceProvider<IPokedex>;
 
   constructor(
-    private readonly _http: HttpClient,
+    private readonly _resourceService: ResourceService<IPokedex>,
     private readonly _helper: HelperService
   ) {
-    this._remoteService = `${environment.pokemonRemoteServiceBase}/pokedex`;
+    this._resourceProvider = this._resourceService.getProvider(
+      Resource.POKEDEX
+    );
   }
 
   getResource(nameOrId: string): Observable<TPokedex> {
-    return this._http
-      .get<IPokedex>(`${this._remoteService}/${nameOrId}`)
+    return this._resourceProvider
+      .getResource(nameOrId)
       .pipe(map(Pokedex.adaptor));
   }
 
   getResourceList(query?: TResourceListQuery): Observable<ResourceList<TPokedex>> {
     const { namedResourceToResource } = this._helper.http;
-    const { limit, offset } = query ?? ResourceListQuery();
-
-    const params = { limit, offset };
 
     const _toPokedexReq = ({ name }: INamedAPIResource): Observable<TPokedex> => {
       return this.getResource(name);
     };
 
-    return this._http
-      .get<INamedAPIResourceList>(this._remoteService, { params })
+    return this._resourceProvider
+      .getResourceList(query)
       .pipe(namedResourceToResource(_toPokedexReq));
   }
 }
