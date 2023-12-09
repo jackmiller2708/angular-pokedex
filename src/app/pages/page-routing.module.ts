@@ -15,39 +15,65 @@ const routes: Routes = [
     resolve: { dataSource: homeResolver },
   },
   {
-    path: ':region',
-    loadComponent: () =>
-      import('./components/region/region.component').then(
-        (c) => c.RegionComponent
-      ),
-    resolve: {
-      dataSource: regionResolver,
-      breadcrumbs: breadcumbResolver,
-    },
+    path: '-',
+    children: [
+      {
+        path: ':region',
+        loadComponent: () =>
+          import('./components/region/region.component').then(
+            (c) => c.RegionComponent
+          ),
+        resolve: {
+          dataSource: regionResolver,
+          breadcrumbs: breadcumbResolver,
+        },
+      },
+      {
+        path: ':region/:pokedex',
+        loadComponent: () =>
+          import('./components/pokedex/pokedex.component').then(
+            (c) => c.PokedexComponent
+          ),
+        canActivate: [regionParamGuard],
+        resolve: {
+          dataSource: pokedexResolver,
+          breadcrumbs: breadcumbResolver,
+        },
+      },
+      {
+        path: ':region/:pokedex/:pokemon',
+        loadComponent: () =>
+          import('./components/pokemon/pokemon.component').then(
+            (c) => c.PokemonComponent
+          ),
+        canActivate: [regionParamGuard, pokedexParamGuard],
+        resolve: {
+          dataSource: pokemonResolver,
+          breadcrumbs: breadcumbResolver,
+        },
+      },
+    ],
   },
   {
-    path: ':region/:pokedex',
+    path: 'regions',
     loadComponent: () =>
-      import('./components/pokedex/pokedex.component').then(
-        (c) => c.PokedexComponent
+      import('./components/resources/resources.component').then(
+        (c) => c.ResourcesComponent
       ),
-    canActivate: [regionParamGuard],
-    resolve: {
-      dataSource: pokedexResolver,
-      breadcrumbs: breadcumbResolver,
-    },
   },
   {
-    path: ':region/:pokedex/:pokemon',
+    path: 'pokedexes',
     loadComponent: () =>
-      import('./components/pokemon/pokemon.component').then(
-        (c) => c.PokemonComponent
+      import('./components/resources/resources.component').then(
+        (c) => c.ResourcesComponent
       ),
-    canActivate: [regionParamGuard, pokedexParamGuard],
-    resolve: {
-      dataSource: pokemonResolver,
-      breadcrumbs: breadcumbResolver,
-    },
+  },
+  {
+    path: 'pokemons',
+    loadComponent: () =>
+      import('./components/resources/resources.component').then(
+        (c) => c.ResourcesComponent
+      ),
   },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];

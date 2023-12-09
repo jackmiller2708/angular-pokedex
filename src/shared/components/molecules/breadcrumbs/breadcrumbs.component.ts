@@ -1,18 +1,18 @@
+import { LinkComponent, ListComponent } from '@components/atoms';
 import { Component, Input } from '@angular/core';
-import { ListComponent } from '@components/atoms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Breadcrumb } from '@interfaces/application';
 import { List } from 'immutable';
 
 @Component({
-  selector: 'app-breadcumb-container',
-  templateUrl: './breadcumb-container.component.html',
-  styleUrl: './breadcumb-container.component.scss',
-  imports: [CommonModule, RouterModule, ListComponent],
+  selector: 'app-breadcrumbs',
+  templateUrl: './breadcrumbs.component.html',
+  styleUrl: './breadcrumbs.component.scss',
+  imports: [CommonModule, RouterModule, ListComponent, LinkComponent],
   standalone: true,
 })
-export class BreadcumbContainerComponent {
+export class BreadcrumbsComponent {
   private _dataSource: List<Breadcrumb> | undefined;
 
   @Input({ required: true })

@@ -1,0 +1,9 @@
+<input
+  type="text"
+  class="rounded-md px-2 py-1"
+  (input)="onInput($event)"
+  (change)="onChange($event)"
+  (focus)="onFocus()"
+  [disabled]="disabled"
+  placeholder="Search anything..."
+/>

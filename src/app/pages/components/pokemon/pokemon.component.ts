@@ -1,18 +1,21 @@
-import { BreadcumbContainerComponent } from '@components/molecules';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Breadcrumb, IObserverSafe } from '@interfaces/application';
+import { BreadcrumbsComponent } from '@components/molecules';
 import { ActivatedRoute, Data } from '@angular/router';
 import { HelperService } from '@services/application';
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { List } from 'immutable';
 import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-pokemon',
-  standalone: true,
-  imports: [CommonModule, BreadcumbContainerComponent],
   templateUrl: './pokemon.component.html',
   styleUrl: './pokemon.component.scss',
+  imports: [CommonModule, BreadcrumbsComponent, NgOptimizedImage],
+  host: {
+    class: 'flex flex-col h-full w-full',
+  },
+  standalone: true,
 })
 export class PokemonComponent implements IObserverSafe {
   private readonly _ngDestroy$: Subject<void>;

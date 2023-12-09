@@ -1,6 +1,6 @@
 import { ActivatedRoute, Data, RouterModule } from '@angular/router';
-import { BreadcumbContainerComponent } from '@components/molecules';
 import { Breadcrumb, IObserverSafe } from '@interfaces/application';
+import { BreadcrumbsComponent } from '@components/molecules';
 import { HelperService } from '@services/application';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
@@ -12,7 +12,7 @@ import { List } from 'immutable';
   selector: 'app-region',
   templateUrl: './region.component.html',
   styleUrl: './region.component.scss',
-  imports: [CommonModule, RouterModule, BreadcumbContainerComponent],
+  imports: [CommonModule, RouterModule, BreadcrumbsComponent],
   host: {
     class: 'block h-full w-full p-4',
   },
