@@ -1,0 +1,10 @@
+@if (dataSource) { 
+  @for (item of dataSource; track $index) {
+    <a 
+      class="relative after:absolute after:-right-[9px] after:top-1/2 after:-translate-y-1/2 after:content-['/'] last:after:content-none after:pointer-events-none"
+      [routerLink]="item.path"
+    >
+      {{ item.name }}
+    </a>
+  } 
+}
