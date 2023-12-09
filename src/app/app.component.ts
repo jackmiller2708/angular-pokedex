@@ -1,14 +1,15 @@
-import { HeaderComponent, SearchInputComponent } from '@components/atoms';
-import { Component, HostBinding } from '@angular/core';
+import { HeaderComponent, LinkComponent, SearchInputComponent } from '@components/atoms';
 import { AppStateService } from './services';
-import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 
 const imports = [
   CommonModule,
   RouterOutlet,
   HeaderComponent,
   SearchInputComponent,
+  LinkComponent,
 ];
 
 @Component({
@@ -17,11 +18,9 @@ const imports = [
   styleUrls: ['./app.component.scss'],
   imports,
   providers: [AppStateService],
+  host: {
+    class: 'w-screen h-screen flex flex-col overflow-hidden',
+  },
   standalone: true,
 })
-export class AppComponent {
-  @HostBinding('class')
-  private get _classes(): string[] {
-    return ['w-screen', 'h-screen', 'flex', 'flex-col', 'overflow-hidden'];
-  }
-}
+export class AppComponent {}
