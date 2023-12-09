@@ -1,5 +1,6 @@
 import { pokedexParamGuard, regionParamGuard } from '@app/guards';
 import { RouterModule, Routes } from '@angular/router';
+import { breadcumbResolver } from '@app/resolvers';
 import { pokemonResolver } from './components/pokemon/resolver/pokemon.resolver';
 import { pokedexResolver } from './components/pokedex/resolver/pokedex.resolver';
 import { regionResolver } from './components/region/resolver/region.resolver';
@@ -19,7 +20,10 @@ const routes: Routes = [
       import('./components/region/region.component').then(
         (c) => c.RegionComponent
       ),
-    resolve: { dataSource: regionResolver },
+    resolve: {
+      dataSource: regionResolver,
+      breadcrumbs: breadcumbResolver,
+    },
   },
   {
     path: ':region/:pokedex',
@@ -28,7 +32,10 @@ const routes: Routes = [
         (c) => c.PokedexComponent
       ),
     canActivate: [regionParamGuard],
-    resolve: { dataSource: pokedexResolver },
+    resolve: {
+      dataSource: pokedexResolver,
+      breadcrumbs: breadcumbResolver,
+    },
   },
   {
     path: ':region/:pokedex/:pokemon',
@@ -37,7 +44,10 @@ const routes: Routes = [
         (c) => c.PokemonComponent
       ),
     canActivate: [regionParamGuard, pokedexParamGuard],
-    resolve: { dataSource: pokemonResolver },
+    resolve: {
+      dataSource: pokemonResolver,
+      breadcrumbs: breadcumbResolver,
+    },
   },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
