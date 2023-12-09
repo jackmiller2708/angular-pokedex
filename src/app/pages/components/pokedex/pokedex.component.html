@@ -1,4 +1,6 @@
-@if (dataSource) {
+@if (dataSource && breadcrumbs) {
+  <app-breadcumb-container [dataSource]="breadcrumbs" />
+
   <span>Pokedex: {{ dataSource.name }}</span>
 
   <div class="flex flex-wrap gap-2">
