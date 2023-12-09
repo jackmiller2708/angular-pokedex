@@ -1,14 +1,21 @@
 @if (dataSource) { 
   <app-list [dataSource]="dataSource" [template]="breadcrumbTemplate" class="flex gap-3">
     <ng-template #breadcrumbTemplate let-breadcrumb="item">
-      <a 
+      <!-- <a 
         class="relative font-semibold select-none after:absolute after:-right-[9px] after:top-1/2 after:-translate-y-1/2 after:content-['/'] last:after:content-none after:pointer-events-none"
         routerLinkActive="pointer-events-none !font-normal"
         [routerLink]="breadcrumb.path"
         [routerLinkActiveOptions]="{ exact: true }"
       >
         {{ breadcrumb.name | titlecase }}
-      </a>
+      </a> -->
+
+      <app-link 
+        class="relative font-semibold select-none after:absolute after:-right-[9px] after:top-1/2 after:-translate-y-1/2 after:content-['/'] last:after:content-none after:pointer-events-none"
+        [to]="breadcrumb.path" 
+      >
+        {{ breadcrumb.name | titlecase }}
+      </app-link>
     </ng-template>
   </app-list>
 }

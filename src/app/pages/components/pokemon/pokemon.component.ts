@@ -1,5 +1,5 @@
-import { BreadcumbContainerComponent } from '@components/molecules';
 import { Breadcrumb, IObserverSafe } from '@interfaces/application';
+import { BreadcrumbsComponent } from '@components/molecules';
 import { ActivatedRoute, Data } from '@angular/router';
 import { HelperService } from '@services/application';
 import { CommonModule } from '@angular/common';
@@ -10,7 +10,7 @@ import { Subject } from 'rxjs';
 @Component({
   selector: 'app-pokemon',
   standalone: true,
-  imports: [CommonModule, BreadcumbContainerComponent],
+  imports: [CommonModule, BreadcrumbsComponent],
   templateUrl: './pokemon.component.html',
   styleUrl: './pokemon.component.scss',
 })

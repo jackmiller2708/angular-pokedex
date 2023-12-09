@@ -1,4 +1,4 @@
-import { BreadcumbContainerComponent, PokemonCardComponent } from '@components/molecules';
+import { BreadcrumbsComponent, PokemonCardComponent } from '@components/molecules';
 import { Breadcrumb, IObserverSafe } from '@interfaces/application';
 import { ActivatedRoute, Data } from '@angular/router';
 import { PokedexPageService } from './services';
@@ -13,8 +13,11 @@ import { List } from 'immutable';
   selector: 'app-pokedex',
   templateUrl: './pokedex.component.html',
   styleUrl: './pokedex.component.scss',
-  imports: [CommonModule, PokemonCardComponent, BreadcumbContainerComponent],
+  imports: [CommonModule, PokemonCardComponent, BreadcrumbsComponent],
   providers: [PokedexPageService],
+  host: {
+    class: 'block h-full w-full overflow-y-auto'
+  },
   standalone: true,
 })
 export class PokedexComponent implements IObserverSafe {
