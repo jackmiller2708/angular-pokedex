@@ -1,8 +1,10 @@
-@if (dataSource) {
+@if (dataSource && breadcrumbs) {
+  <app-breadcrumbs [dataSource]="breadcrumbs" />
+
   <p>{{ dataSource.name }}</p>
 
   @for (pokedex of dataSource.pokedexes; track $index) {
-    <a [routerLink]="'/' + dataSource.name + '/' + pokedex.name">
+    <a [routerLink]="['/', '-', dataSource.name, pokedex.name]">
       <div>{{ pokedex.name }}</div>
     </a>
   }

@@ -1,24 +1,29 @@
-import { PokemonCardComponent } from '@components/molecules';
+import { BreadcrumbsComponent, PokemonCardComponent } from '@components/molecules';
+import { Breadcrumb, IObserverSafe } from '@interfaces/application';
+import { ActivatedRoute, Data } from '@angular/router';
 import { PokedexPageService } from './services';
-import { ActivatedRoute } from '@angular/router';
-import { IObserverSafe } from '@interfaces/application';
 import { HelperService } from '@services/application';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Pokedex } from '@interfaces/domain';
 import { Subject } from 'rxjs';
+import { List } from 'immutable';
 
 @Component({
   selector: 'app-pokedex',
   templateUrl: './pokedex.component.html',
   styleUrl: './pokedex.component.scss',
-  imports: [CommonModule, PokemonCardComponent],
+  imports: [CommonModule, PokemonCardComponent, BreadcrumbsComponent],
   providers: [PokedexPageService],
+  host: {
+    class: 'block h-full w-full overflow-y-auto'
+  },
   standalone: true,
 })
 export class PokedexComponent implements IObserverSafe {
   private readonly _ngDestroy$: Subject<void>;
   private _dataSource: Pokedex | undefined;
+  private _breadcrumbs: List<Breadcrumb> | undefined;
   private _countDigits: number;
 
   get dataSource(): Pokedex | undefined {
@@ -29,9 +34,13 @@ export class PokedexComponent implements IObserverSafe {
     return this._countDigits;
   }
 
+  get breadcrumbs(): List<Breadcrumb> | undefined {
+    return this._breadcrumbs;
+  }
+
   constructor(
-    private readonly _activatedRoute: ActivatedRoute,
-    private readonly _pokedexPageService: PokedexPageService,
+    private readonly _route: ActivatedRoute,
+    private readonly _pageService: PokedexPageService,
     private readonly _helper: HelperService
   ) {
     this._ngDestroy$ = new Subject();
@@ -46,18 +55,21 @@ export class PokedexComponent implements IObserverSafe {
     this._ngDestroy$.next();
   }
 
-  private _onPokedexData(data: Pokedex): void {
-    this._dataSource = data;
-    this._countDigits = this._helper.getNumDigits(data.pokemonEntries.size);
+  private _onPageData({ dataSource, breadcrumbs }: Data): void {
+    const { getNumDigits } = this._helper;
+
+    this._dataSource = dataSource;
+    this._breadcrumbs = breadcrumbs;
+    this._countDigits = getNumDigits(dataSource.pokemonEntries.size);
   }
 
   private _initData(): void {
     const { observableRegistrarFactory } = this._helper.rxjs;
-    const { data } = this._activatedRoute;
+    const { data } = this._route;
 
     const register = observableRegistrarFactory.call(this, this._ngDestroy$);
-    const data$ = data.pipe(this._pokedexPageService.toPokedex());
+    const data$ = data.pipe(this._pageService.toPageData());
 
-    register(data$, this._onPokedexData);
+    register(data$, this._onPageData);
   }
 }

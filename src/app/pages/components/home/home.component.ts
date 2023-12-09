@@ -29,7 +29,14 @@ export class HomeComponent implements IObserverSafe {
 
   @HostBinding('class')
   private get _classes(): string[] {
-    return ['relative', 'w-screen', 'h-screen', 'flex', 'flex-col'];
+    return [
+      'relative',
+      'w-full',
+      'h-full',
+      'flex',
+      'flex-col',
+      'overflow-hidden',
+    ];
   }
 
   get regions(): ResourceList<Region> | undefined {
