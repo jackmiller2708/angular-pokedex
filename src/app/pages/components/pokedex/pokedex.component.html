@@ -5,18 +5,12 @@
 
   <div class="flex flex-wrap gap-2">
     @for (pokemon of dataSource.pokemonEntries; track $index) {
-      @defer (on viewport) {
-        <app-pokemon-card 
-          class="h-[294px] w-[254px]"
-          [dataSource]="$any(pokemon)" 
-          [maxIdDigits]="countDigits"
-          [showEntryNo]="true"
-        ></app-pokemon-card>
-      }
-
-      @placeholder { 
-        <div class="h-[294px] w-[254px]"></div>
-      }
+      <app-pokemon-card 
+        class="h-[294px] w-[254px]"
+        [dataSource]="$any(pokemon)" 
+        [maxIdDigits]="countDigits"
+        [showEntryNo]="true"
+      ></app-pokemon-card>
     }
   </div>
 }
