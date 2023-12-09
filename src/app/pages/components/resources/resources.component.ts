@@ -1,13 +1,14 @@
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-resources',
-  standalone: true,
-  imports: [CommonModule],
   templateUrl: './resources.component.html',
-  styleUrl: './resources.component.scss'
+  styleUrl: './resources.component.scss',
+  imports: [CommonModule, NgOptimizedImage],
+  host: {
+    class: 'flex h-full w-full items-center justify-center',
+  },
+  standalone: true,
 })
-export class ResourcesComponent {
-
-}
+export class ResourcesComponent {}
