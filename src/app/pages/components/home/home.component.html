@@ -11,7 +11,7 @@
         [template]="regionTemplate"
       >
         <ng-template #regionTemplate let-item="item">
-          <a [routerLink]="'/' + item.name">
+          <a [routerLink]="['/', '-', item.name]">
             <app-region-card [dataSource]="item"></app-region-card>
           </a>
         </ng-template>
