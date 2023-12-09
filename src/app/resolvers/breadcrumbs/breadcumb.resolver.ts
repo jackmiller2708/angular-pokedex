@@ -4,9 +4,11 @@ import { ResolveFn } from '@angular/router';
 import { List } from 'immutable';
 
 export const breadcumbResolver: ResolveFn<List<TBreadcrumb>> = (route, state) => {
-  const getPath = ({ path }: TBreadcrumb) => (path === '/' ? '' : path);
+  const getPath = ({ path }: TBreadcrumb, currPath: string): string => {
+    return `${path === '/' ? '' : path}/${currPath}`;
+  };
 
   return route.url.reduce<List<TBreadcrumb>>((acc, { path }) => {
-    return acc.push(Breadcrumb({ name: path, path: getPath(acc.last()) }));
+    return acc.push(Breadcrumb({ name: path, path: getPath(acc.last(), path) }));
   }, List([Breadcrumb()]));
 };

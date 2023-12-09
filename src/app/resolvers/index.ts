@@ -1,1 +1,1 @@
-export * from './breadcruumbs/breadcumb.resolver';
+export * from './breadcrumbs/breadcumb.resolver';
