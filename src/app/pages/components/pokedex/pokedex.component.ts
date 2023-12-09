@@ -55,8 +55,6 @@ export class PokedexComponent implements IObserverSafe {
   private _onPageData({ dataSource, breadcrumbs }: Data): void {
     const { getNumDigits } = this._helper;
 
-    console.log(breadcrumbs)
-
     this._dataSource = dataSource;
     this._breadcrumbs = breadcrumbs;
     this._countDigits = getNumDigits(dataSource.pokemonEntries.size);

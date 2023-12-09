@@ -1,10 +1,14 @@
 @if (dataSource) { 
-  @for (item of dataSource; track $index) {
-    <a 
-      class="relative after:absolute after:-right-[9px] after:top-1/2 after:-translate-y-1/2 after:content-['/'] last:after:content-none after:pointer-events-none"
-      [routerLink]="item.path"
-    >
-      {{ item.name }}
-    </a>
-  } 
+  <app-list [dataSource]="dataSource" [template]="breadcrumbTemplate" class="flex gap-3">
+    <ng-template #breadcrumbTemplate let-breadcrumb="item">
+      <a 
+        class="relative font-semibold select-none after:absolute after:-right-[9px] after:top-1/2 after:-translate-y-1/2 after:content-['/'] last:after:content-none after:pointer-events-none"
+        routerLinkActive="pointer-events-none !font-normal"
+        [routerLink]="breadcrumb.path"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        {{ breadcrumb.name | titlecase }}
+      </a>
+    </ng-template>
+  </app-list>
 }
