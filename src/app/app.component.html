@@ -1,1 +1,17 @@
-<router-outlet />
+<app-header class="px-6">
+  <div class="h-full flex justify-between">
+    <div class="h-full flex gap-2 items-center text-lg font-medium text-white">
+      <p>Regions</p>
+      <p>Pokedexes</p>
+      <p>Pokemons</p>
+    </div>
+
+    <div class="h-full flex items-center">
+      <app-search-input />
+    </div>
+  </div>
+</app-header>
+
+<div class="flex-1 min-h-0">
+  <router-outlet />
+</div>
