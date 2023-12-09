@@ -69,7 +69,7 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'pokemon',
+    path: 'pokemons',
     loadComponent: () =>
       import('./components/resources/resources.component').then(
         (c) => c.ResourcesComponent
