@@ -10,6 +10,20 @@ import { Data } from '@angular/router';
 export class PokedexPageService {
   constructor(private readonly _pokemonService: PokemonService) {}
 
+  toPageData(): UnaryFunction<Observable<Data>, Observable<Data>> {
+    let savedData: Data;
+
+    const saveData = (data: Data) => {
+      savedData = data;
+    };
+
+    const mapData = (dataSource: Pokedex) => {
+      return { ...savedData, dataSource };
+    };
+
+    return pipe(tap(saveData), this.toPokedex(), map(mapData));
+  }
+
   toPokedex(): UnaryFunction<Observable<Data>, Observable<Pokedex>> {
     let pokemonEntries = Map<string, number>();
     let dataSource: Pokedex;
