@@ -73,18 +73,24 @@ export class AppComponent implements IObserverSafe {
   }
 
   private _toLoaderState(): UnaryFunction<Observable<RouterEvent>, Observable<boolean>> {
-    return pipe(
-      filter(
-        (event: RouterEvent): event is NavigationStart | NavigationEnd =>
-          event instanceof NavigationStart || event instanceof NavigationEnd
-      ),
-      switchMap((event: NavigationStart | NavigationEnd): Observable<boolean> =>
-        iif(
-          () => event instanceof NavigationStart,
-          timer(1000).pipe(map(() => true)),
-          of(false)
-        )
-      )
-    );
+    /**
+     * The wait time in milliseconds before setting 
+     * the loader state to true.
+     */
+    const WAIT_TIME_MS = 300;
+
+    const _onlyNavStartOrEnd = (event: RouterEvent): event is NavigationStart | NavigationEnd => {
+      return event instanceof NavigationStart || event instanceof NavigationEnd
+    }
+
+    const _toLoaderState = (event: NavigationStart | NavigationEnd): Observable<boolean> => {
+      return iif(
+        () => event instanceof NavigationStart,
+        timer(WAIT_TIME_MS).pipe(map(() => true)),
+        of(false)
+      );
+    }
+
+    return pipe(filter(_onlyNavStartOrEnd), switchMap(_toLoaderState));
   }
 }
