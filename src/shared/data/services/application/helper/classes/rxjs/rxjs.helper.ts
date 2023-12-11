@@ -1,5 +1,5 @@
 import { Observable, takeUntil, pipe, filter, UnaryFunction } from 'rxjs';
-import { ObserverNextHandler, ObservableRegistrar } from '../interfaces';
+import { ObserverNextHandler, ObservableRegistrar } from '../../interfaces';
 
 export class RxJSHelper {
   private readonly _operators: Readonly<CustomOperator>;
