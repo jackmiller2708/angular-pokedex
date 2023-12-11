@@ -4,10 +4,10 @@ import { RouterEvent } from "@models/application/utilities";
 
 export class RouterHelper {
   /**
-   * Transforms router events to emit the loader state
+   * Transforms router events to emit the loading state
    * after a `waitTime` number of milliseconds
    */
-  toLoaderState(waitTime: number): UnaryFunction<Observable<RouterEvent>, Observable<boolean>> {
+  toLoading(waitTime: number): UnaryFunction<Observable<RouterEvent>, Observable<boolean>> {
     const _onlyNavStartOrEnd = (event: RouterEvent): event is NavigationStart | NavigationEnd => {
       return event instanceof NavigationStart || event instanceof NavigationEnd
     }

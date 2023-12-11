@@ -25,7 +25,7 @@ const imports = [
 })
 export class HomeComponent implements IObserverSafe {
   private readonly _ngDestroy$: Subject<void>;
-  private _regions: ResourceList<Region> | undefined;
+  private _dataSource: ResourceList<Region> | undefined;
 
   @HostBinding('class')
   private get _classes(): string[] {
@@ -39,8 +39,8 @@ export class HomeComponent implements IObserverSafe {
     ];
   }
 
-  get regions(): ResourceList<Region> | undefined {
-    return this._regions;
+  get dataSource(): ResourceList<Region> | undefined {
+    return this._dataSource;
   }
 
   constructor(
@@ -58,16 +58,16 @@ export class HomeComponent implements IObserverSafe {
     this._ngDestroy$.next();
   }
 
+  private _onPageData({ dataSource }: Data): void {
+    this._dataSource = dataSource;
+  }
+
   private _initData(): void {
     const { observableRegistrarFactory } = this._helper.rxjs;
     const { data } = this._activatedRoute;
 
     const register = observableRegistrarFactory.call(this, this._ngDestroy$);
 
-    register(data, this._onRegionData);
-  }
-
-  private _onRegionData(data: Data): void {
-    this._regions = data['dataSource'];
+    register(data, this._onPageData);
   }
 }

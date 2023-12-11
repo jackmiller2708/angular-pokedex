@@ -36,8 +36,11 @@ export class AppComponent implements IObserverSafe {
   }
 
   constructor(
+    // Tokens
     @Inject(LOADER_WAIT_TIME)
     private readonly _loaderWaitTime: number,
+
+    // Services
     private readonly _appStateService: AppStateService,
     private readonly _helperService: HelperService,
     private readonly _router: Router
@@ -55,22 +58,22 @@ export class AppComponent implements IObserverSafe {
   }
 
   private _initData(): void {
-    const { rxjs: { observableRegistrarFactory }, router: { toLoaderState } } = this._helperService;
-    const { isLoading$ } = this._appStateService;
+    const { rxjs: { observableRegistrarFactory }, router: { toLoading } } = this._helperService;
+    const { isLoading$: loadingState$ } = this._appStateService;
     const { events } = this._router;
 
     const register = observableRegistrarFactory.call(this, this._ngDestroy$);
-    const eventDrivenLoaderState$ = events.pipe(toLoaderState(this._loaderWaitTime));
+    const eventDrivenLoading$ = events.pipe(toLoading(this._loaderWaitTime));
 
-    register(eventDrivenLoaderState$, this._onLoaderState);
-    register(isLoading$, this._onLoadingStateChange);
+    register(eventDrivenLoading$, this._onLoadingChange);
+    register(loadingState$, this._onLoadingStateChange);
+  }
+
+  private _onLoadingChange(value: boolean): void {
+    this._appStateService.setLoading(value);
   }
 
   private _onLoadingStateChange(value: boolean): void {
     this._isLoading = value;
-  }
-
-  private _onLoaderState(value: boolean) {
-    this._appStateService.setLoading(value);
   }
 }
