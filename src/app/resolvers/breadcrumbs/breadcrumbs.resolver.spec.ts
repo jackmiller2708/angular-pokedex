@@ -1,14 +1,12 @@
-import { breadcumbResolver } from './breadcumb.resolver';
+import { breadcrumbsResolver } from './breadcrumbs.resolver';
 import { Breadcrumb } from '@interfaces/application';
 import { ResolveFn } from '@angular/router';
 import { TestBed } from '@angular/core/testing';
 import { List } from 'immutable';
 
-describe('breadcumbResolver', () => {
-  const executeResolver: ResolveFn<List<Breadcrumb>> = (...resolverParameters) =>
-    TestBed.runInInjectionContext(() =>
-      breadcumbResolver(...resolverParameters)
-    );
+describe('breadcrumbsResolver', () => {
+  const executeResolver: ResolveFn<List<Breadcrumb>> = (...resolverParameters) => 
+      TestBed.runInInjectionContext(() => breadcrumbsResolver(...resolverParameters));
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
