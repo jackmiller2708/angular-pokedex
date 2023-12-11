@@ -1,4 +1,4 @@
-import { ErrorCode } from '@constants';
+import { ErrorCode } from '@constants/enums';
 import { RecordOf } from 'immutable';
 
 export interface IResponseError {

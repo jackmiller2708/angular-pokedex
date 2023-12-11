@@ -1,4 +1,4 @@
-import { EnumHelper, HttpClientHelper, RxJSHelper } from './classes';
+import { EnumHelper, HttpClientHelper, RouterHelper, RxJSHelper } from './classes';
 import { Injectable } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
@@ -6,6 +6,7 @@ export class HelperService {
   private readonly _http: Readonly<HttpClientHelper>;
   private readonly _rxjs: Readonly<RxJSHelper>;
   private readonly _enum: Readonly<EnumHelper>;
+  private readonly _router: Readonly<RouterHelper>;
 
   get http(): Readonly<HttpClientHelper> {
     return this._http;
@@ -19,10 +20,15 @@ export class HelperService {
     return this._enum;
   }
 
+  get router(): Readonly<RouterHelper> {
+    return this._router;
+  }
+
   constructor() {
     this._http = Object.freeze(new HttpClientHelper());
     this._rxjs = Object.freeze(new RxJSHelper());
     this._enum = Object.freeze(new EnumHelper());
+    this._router = Object.freeze(new RouterHelper());
   }
 
   getNumDigits(num: number): number {

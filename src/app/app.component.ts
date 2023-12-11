@@ -1,12 +1,13 @@
-import { Observable, Subject, UnaryFunction, filter, iif, map, of, pipe, switchMap, timer } from 'rxjs';
 import { HeaderComponent, LinkComponent, SearchInputComponent } from '@components/atoms';
-import { NavigationEnd, NavigationStart, Router, RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
+import { Component, Inject } from '@angular/core';
+import { AppLoaderWaitTime } from '@constants/providers';
+import { LOADER_WAIT_TIME } from '@constants/injection-tokens';
 import { AppStateService } from './services';
 import { IObserverSafe } from '@interfaces/application';
 import { HelperService } from '@services/application';
 import { CommonModule } from '@angular/common';
-import { RouterEvent } from '@models/application/utilities';
-import { Component } from '@angular/core';
+import { Subject } from 'rxjs';
 
 const imports = [
   CommonModule,
@@ -21,7 +22,7 @@ const imports = [
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   imports,
-  providers: [AppStateService],
+  providers: [AppStateService, AppLoaderWaitTime],
   host: {
     class: 'relative w-screen h-screen flex flex-col overflow-hidden',
   },
@@ -36,6 +37,8 @@ export class AppComponent implements IObserverSafe {
   }
 
   constructor(
+    @Inject(LOADER_WAIT_TIME)
+    private readonly _loaderWaitTime: number,
     private readonly _appStateService: AppStateService,
     private readonly _helperService: HelperService,
     private readonly _router: Router
@@ -53,14 +56,14 @@ export class AppComponent implements IObserverSafe {
   }
 
   private _initData(): void {
-    const { observableRegistrarFactory } = this._helperService.rxjs;
+    const { rxjs: { observableRegistrarFactory }, router: { toLoaderState } } = this._helperService;
     const { isLoading$ } = this._appStateService;
     const { events } = this._router;
 
     const register = observableRegistrarFactory.call(this, this._ngDestroy$);
-    const event$ = events.pipe(this._toLoaderState());
+    const eventDrivenLoaderState$ = events.pipe(toLoaderState(this._loaderWaitTime));
 
-    register(event$, this._onLoaderState);
+    register(eventDrivenLoaderState$, this._onLoaderState);
     register(isLoading$, this._onLoadingStateChange);
   }
 
@@ -70,27 +73,5 @@ export class AppComponent implements IObserverSafe {
 
   private _onLoaderState(value: boolean) {
     this._appStateService.setLoading(value);
-  }
-
-  private _toLoaderState(): UnaryFunction<Observable<RouterEvent>, Observable<boolean>> {
-    /**
-     * The wait time in milliseconds before setting 
-     * the loader state to true.
-     */
-    const WAIT_TIME_MS = 300;
-
-    const _onlyNavStartOrEnd = (event: RouterEvent): event is NavigationStart | NavigationEnd => {
-      return event instanceof NavigationStart || event instanceof NavigationEnd
-    }
-
-    const _toLoaderState = (event: NavigationStart | NavigationEnd): Observable<boolean> => {
-      return iif(
-        () => event instanceof NavigationStart,
-        timer(WAIT_TIME_MS).pipe(map(() => true)),
-        of(false)
-      );
-    }
-
-    return pipe(filter(_onlyNavStartOrEnd), switchMap(_toLoaderState));
   }
 }

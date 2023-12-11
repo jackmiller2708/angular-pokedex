@@ -1,6 +1,6 @@
 import { IResponseError } from '@interfaces/application/errors';
 import { NotFoundError } from './NotFoundError.model';
-import { ErrorCode } from '@constants';
+import { ErrorCode } from '@constants/enums';
 import { RecordOf } from 'immutable';
 
 export function responseErrorFactory(statusCode: ErrorCode): RecordOf<IResponseError> {
