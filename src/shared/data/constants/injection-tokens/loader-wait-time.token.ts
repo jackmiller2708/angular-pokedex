@@ -1,7 +1,10 @@
-import { InjectionToken } from "@angular/core";
+import { InjectionToken } from '@angular/core';
 
 /**
- * The injection token that represents the loader wait time,
- * whose value can be provided by the `AppLoaderWaitTime` provider.
+ * And injection token that provides the default `300ms`
+ * value for the loader's wait time.
  */
-export const LOADER_WAIT_TIME = new InjectionToken('The default wait time for screen loader')
+export const LOADER_WAIT_TIME = new InjectionToken(
+  'The default wait time for screen loader',
+  { providedIn: 'root', factory: () => 300 }
+);

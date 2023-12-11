@@ -1,7 +1,6 @@
 import { HeaderComponent, LinkComponent, SearchInputComponent } from '@components/atoms';
 import { Router, RouterOutlet } from '@angular/router';
 import { Component, Inject } from '@angular/core';
-import { AppLoaderWaitTime } from '@constants/providers';
 import { LOADER_WAIT_TIME } from '@constants/injection-tokens';
 import { AppStateService } from './services';
 import { IObserverSafe } from '@interfaces/application';
@@ -22,7 +21,7 @@ const imports = [
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   imports,
-  providers: [AppStateService, AppLoaderWaitTime],
+  providers: [AppStateService],
   host: {
     class: 'relative w-screen h-screen flex flex-col overflow-hidden',
   },
