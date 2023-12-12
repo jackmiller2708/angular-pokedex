@@ -1,10 +1,10 @@
 import { ActivatedRoute, Data, RouterModule } from '@angular/router';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { IObserverSafe, ResourceList } from '@interfaces/application';
-import { Component, HostBinding } from '@angular/core';
 import { RegionCardComponent } from '@components/molecules';
 import { ListComponent } from '@components/atoms';
 import { HelperService } from '@services/application';
+import { Component } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Region } from '@interfaces/domain';
 
@@ -21,26 +21,15 @@ const imports = [
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
   imports,
+  host: { class: 'relative w-full h-full flex flex-col overflow-hidden' },
   standalone: true,
 })
 export class HomeComponent implements IObserverSafe {
   private readonly _ngDestroy$: Subject<void>;
-  private _regions: ResourceList<Region> | undefined;
+  private _dataSource: ResourceList<Region> | undefined;
 
-  @HostBinding('class')
-  private get _classes(): string[] {
-    return [
-      'relative',
-      'w-full',
-      'h-full',
-      'flex',
-      'flex-col',
-      'overflow-hidden',
-    ];
-  }
-
-  get regions(): ResourceList<Region> | undefined {
-    return this._regions;
+  get dataSource(): ResourceList<Region> | undefined {
+    return this._dataSource;
   }
 
   constructor(
@@ -58,16 +47,16 @@ export class HomeComponent implements IObserverSafe {
     this._ngDestroy$.next();
   }
 
+  private _onPageData({ dataSource }: Data): void {
+    this._dataSource = dataSource;
+  }
+
   private _initData(): void {
     const { observableRegistrarFactory } = this._helper.rxjs;
     const { data } = this._activatedRoute;
 
     const register = observableRegistrarFactory.call(this, this._ngDestroy$);
 
-    register(data, this._onRegionData);
-  }
-
-  private _onRegionData(data: Data): void {
-    this._regions = data['dataSource'];
+    register(data, this._onPageData);
   }
 }

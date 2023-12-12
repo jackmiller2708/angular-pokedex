@@ -1,9 +1,10 @@
 import { ErrorResponseResolverFn, ResponseError } from '@interfaces/application/errors';
-import { Observable, EMPTY, catchError } from 'rxjs';
+import { Observable, EMPTY, catchError, tap } from 'rxjs';
 import { ResolveFn, Router } from '@angular/router';
 import { NotFoundError } from '@models/application/errors';
 import { PokedexService } from '@services/domain';
 import { inject } from '@angular/core';
+import { Pokedex } from '@interfaces/domain';
 
 const errorResponseHandlerFactory = (router: Router): ErrorResponseResolverFn<Observable<any>> => {
   return (error: ResponseError) => {
@@ -15,10 +16,14 @@ const errorResponseHandlerFactory = (router: Router): ErrorResponseResolverFn<Ob
   };
 };
 
-export const pokedexResolver: ResolveFn<boolean> = (route, state) => {
+export const pokedexResolver: ResolveFn<Pokedex> = (route, state) => {
+  const resource = inject(PokedexService);
   const router = inject(Router);
 
-  return inject(PokedexService)
+  return resource
     .getResource(route.params['pokedex'])
-    .pipe(catchError(errorResponseHandlerFactory(router)));
+    .pipe(
+      resource.extendPokemonEntries(),
+      catchError(errorResponseHandlerFactory(router))
+    );
 };

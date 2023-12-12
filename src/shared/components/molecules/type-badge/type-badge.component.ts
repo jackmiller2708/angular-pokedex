@@ -2,7 +2,7 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { BadgeComponent } from '@components/atoms';
 import { HelperService } from '@services/application';
-import { TYPES_COLORS } from '@constants';
+import { TYPES_COLORS } from '@constants/enums';
 import { PokemonType } from '@interfaces/domain/pokemon';
 import { AssetInfo } from '@interfaces/application/assets';
 

@@ -40,7 +40,6 @@ export class PokedexComponent implements IObserverSafe {
 
   constructor(
     private readonly _route: ActivatedRoute,
-    private readonly _pageService: PokedexPageService,
     private readonly _helper: HelperService
   ) {
     this._ngDestroy$ = new Subject();
@@ -68,8 +67,7 @@ export class PokedexComponent implements IObserverSafe {
     const { data } = this._route;
 
     const register = observableRegistrarFactory.call(this, this._ngDestroy$);
-    const data$ = data.pipe(this._pageService.toPageData());
 
-    register(data$, this._onPageData);
+    register(data, this._onPageData);
   }
 }
