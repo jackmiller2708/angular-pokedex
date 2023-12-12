@@ -1,4 +1,4 @@
-import { pokedexParamGuard, regionParamGuard } from '@app/guards';
+import { pokedexParamGuard, regionParamGuard, unnamedSegmentGuard } from '@app/guards';
 import { RouterModule, Routes } from '@angular/router';
 import { breadcrumbsResolver } from '@app/resolvers';
 import { pokemonResolver } from './components/pokemon/resolver/pokemon.resolver';
@@ -53,6 +53,7 @@ const routes: Routes = [
         },
       },
     ],
+    canMatch: [unnamedSegmentGuard],
   },
   {
     path: 'regions',
