@@ -1,6 +1,8 @@
-@if (isLoading) {
-  <p class="absolute h-screen w-screen top-0 left-0 bg-slate-400">Loading</p>
-}
+<app-portal [template]="loaderTemplate" [isVisible]="isLoading">
+  <ng-template #loaderTemplate>
+    <p class="absolute h-screen w-screen top-0 left-0 bg-slate-400">Loading</p>
+  </ng-template>
+</app-portal>
 
 <app-header class="px-6">
   <div class="h-full flex justify-between">

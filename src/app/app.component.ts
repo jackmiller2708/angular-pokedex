@@ -1,4 +1,4 @@
-import { HeaderComponent, LinkComponent, SearchInputComponent } from '@components/atoms';
+import { HeaderComponent, LinkComponent, PortalComponent, SearchInputComponent } from '@components/atoms';
 import { Router, RouterOutlet } from '@angular/router';
 import { Component, Inject } from '@angular/core';
 import { LOADER_WAIT_TIME } from '@constants/injection-tokens';
@@ -14,6 +14,7 @@ const imports = [
   HeaderComponent,
   SearchInputComponent,
   LinkComponent,
+  PortalComponent
 ];
 
 @Component({
