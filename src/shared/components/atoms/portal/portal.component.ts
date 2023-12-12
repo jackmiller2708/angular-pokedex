@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-portal',
   template: '',
+  host: { class: 'hidden' },
   imports: [CommonModule],
   standalone: true,
 })

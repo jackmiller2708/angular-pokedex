@@ -1,10 +1,10 @@
 import { ActivatedRoute, Data, RouterModule } from '@angular/router';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { IObserverSafe, ResourceList } from '@interfaces/application';
-import { Component, HostBinding } from '@angular/core';
 import { RegionCardComponent } from '@components/molecules';
 import { ListComponent } from '@components/atoms';
 import { HelperService } from '@services/application';
+import { Component } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Region } from '@interfaces/domain';
 
@@ -21,23 +21,12 @@ const imports = [
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
   imports,
+  host: { class: 'relative w-full h-full flex flex-col overflow-hidden' },
   standalone: true,
 })
 export class HomeComponent implements IObserverSafe {
   private readonly _ngDestroy$: Subject<void>;
   private _dataSource: ResourceList<Region> | undefined;
-
-  @HostBinding('class')
-  private get _classes(): string[] {
-    return [
-      'relative',
-      'w-full',
-      'h-full',
-      'flex',
-      'flex-col',
-      'overflow-hidden',
-    ];
-  }
 
   get dataSource(): ResourceList<Region> | undefined {
     return this._dataSource;
