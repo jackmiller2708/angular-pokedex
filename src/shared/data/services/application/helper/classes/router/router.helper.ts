@@ -1,4 +1,4 @@
-import { UnaryFunction, Observable, iif, timer, map, of, pipe, filter, switchMap } from "rxjs";
+import { UnaryFunction, Observable, iif, timer, map, pipe, filter, switchMap } from "rxjs";
 import { NavigationStart, NavigationEnd } from "@angular/router";
 import { RouterEvent } from "@models/application/utilities";
 
@@ -16,7 +16,7 @@ export class RouterHelper {
       return iif(
         () => event instanceof NavigationStart,
         timer(waitTime).pipe(map(() => true)),
-        of(false)
+        timer(100).pipe(map(() => false))
       );
     }
 
