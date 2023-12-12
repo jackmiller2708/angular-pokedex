@@ -4,3 +4,4 @@ export * from './card/card.component';
 export * from './header/header.component';
 export * from './search-input/search-input.component';
 export * from './link/link.component';
+export * from './portal/portal.component';
