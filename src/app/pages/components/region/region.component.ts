@@ -46,6 +46,11 @@ export class RegionComponent implements IObserverSafe {
     this._ngDestroy$.next();
   }
 
+  private _onPageData({ dataSource, breadcrumbs }: Data): void {
+    this._dataSource = dataSource;
+    this._breadcrumbs = breadcrumbs;
+  }
+
   private _initData(): void {
     const { observableRegistrarFactory } = this._helper.rxjs;
     const { data } = this._route;
@@ -53,10 +58,5 @@ export class RegionComponent implements IObserverSafe {
     const register = observableRegistrarFactory.call(this, this._ngDestroy$);
 
     register(data, this._onPageData);
-  }
-
-  private _onPageData({ dataSource, breadcrumbs }: Data): void {
-    this._dataSource = dataSource;
-    this._breadcrumbs = breadcrumbs;
   }
 }

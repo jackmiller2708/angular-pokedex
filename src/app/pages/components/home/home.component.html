@@ -2,12 +2,12 @@
   <h1 class="text-4xl font-semibold text-center uppercase">Choose your region</h1>
 </div>
 
-@if (regions) {
+@if (dataSource) {
   <div class="flex flex-col flex-1 min-h-0 items-center justify-center overflow-auto py-3">
     <div class="px-5 h-full w-full">
       <app-list 
         class="relative h-full w-full p-3 flex flex-wrap gap-2 items-center justify-center before:absolute before:h-full before:w-full before:bg-white before:top-0 before:left-0 before:rounded-md before:opacity-60"
-        [dataSource]="regions.results" 
+        [dataSource]="dataSource.results" 
         [template]="regionTemplate"
       >
         <ng-template #regionTemplate let-item="item">
