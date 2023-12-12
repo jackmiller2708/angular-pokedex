@@ -29,12 +29,7 @@ export class PortalComponent {
   @Input({ required: true })
   set template(value: TemplateRef<any>) {
     if (this._isClient) {
-      this._portal = new TemplatePortal(
-        value,
-        this._viewContainerRef,
-        {},
-        this._injector
-      );
+      this._portal = this._getPortal(value);
     }
   }
 
@@ -64,4 +59,13 @@ export class PortalComponent {
   ) {
     this._attachTo = 'body';
   }
+
+  private _getPortal(template: TemplateRef<any>): TemplatePortal {
+    return new TemplatePortal(
+      template,
+      this._viewContainerRef,
+      {},
+      this._injector
+    );
+  } 
 }
