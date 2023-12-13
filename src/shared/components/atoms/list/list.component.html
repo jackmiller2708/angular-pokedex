@@ -1,5 +1,5 @@
 @if (template) { 
-  @for (item of dataSource; track $index) {
+  @for (item of dataSource; track item) {
     <ng-container
       [ngClass]="itemClass"
       [ngTemplateOutlet]="template"
