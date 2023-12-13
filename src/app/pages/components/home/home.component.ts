@@ -2,7 +2,7 @@ import { ActivatedRoute, Data, RouterModule } from '@angular/router';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { IObserverSafe, ResourceList } from '@interfaces/application';
 import { RegionCardComponent } from '@components/molecules';
-import { ListComponent } from '@components/atoms';
+import { LinkComponent, ListComponent } from '@components/atoms';
 import { HelperService } from '@services/application';
 import { Component } from '@angular/core';
 import { Subject } from 'rxjs';
@@ -13,6 +13,7 @@ const imports = [
   NgOptimizedImage,
   RouterModule,
   ListComponent,
+  LinkComponent,
   RegionCardComponent,
 ];
 
@@ -60,3 +61,4 @@ export class HomeComponent implements IObserverSafe {
     register(data, this._onPageData);
   }
 }
+ 

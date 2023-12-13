@@ -10,14 +10,14 @@ import { RouterModule } from '@angular/router';
   standalone: true,
 })
 export class LinkComponent {
-  private _to: string;
+  private _to: string | string[];
 
   @Input({ required: true })
-  set to(value: string) {
+  set to(value: string | string[]) {
     this._to = value;
   }
 
-  get to(): string {
+  get to(): string | string[] {
     return this._to;
   }
 

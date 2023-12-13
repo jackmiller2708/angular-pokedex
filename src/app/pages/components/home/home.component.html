@@ -9,11 +9,12 @@
         class="relative h-full w-full p-3 flex flex-wrap gap-2 items-center justify-center before:absolute before:h-full before:w-full before:bg-white before:top-0 before:left-0 before:rounded-md before:opacity-60"
         [dataSource]="dataSource.results" 
         [template]="regionTemplate"
+        ngSkipHydration
       >
         <ng-template #regionTemplate let-item="item">
-          <a [routerLink]="['/', '-', item.name]">
+          <app-link [to]="['/', '-', item.name]">
             <app-region-card [dataSource]="item"></app-region-card>
-          </a>
+          </app-link>
         </ng-template>
       </app-list>
     </div>
