@@ -13,7 +13,7 @@
       >
         <ng-template #regionTemplate let-item="item">
           <app-link [to]="['/', '-', item.name]">
-            <app-region-card [dataSource]="item"></app-region-card>
+            <app-region-card [dataSource]="item" />
           </app-link>
         </ng-template>
       </app-list>
