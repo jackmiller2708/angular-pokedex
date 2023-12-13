@@ -13,9 +13,7 @@ import { List } from 'immutable';
   templateUrl: './region.component.html',
   styleUrl: './region.component.scss',
   imports: [CommonModule, RouterModule, BreadcrumbsComponent],
-  host: {
-    class: 'block h-full w-full p-4',
-  },
+  host: { class: 'block h-full w-full p-4' },
   standalone: true,
 })
 export class RegionComponent implements IObserverSafe {

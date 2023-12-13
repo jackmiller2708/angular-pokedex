@@ -23,9 +23,7 @@ const imports = [
   styleUrl: './pokedex.component.scss',
   imports,
   providers: [PokedexPageService],
-  host: {
-    class: 'block h-full w-full overflow-y-auto',
-  },
+  host: { class: 'block h-full w-full overflow-y-auto' },
   standalone: true,
 })
 export class PokedexComponent implements IObserverSafe {

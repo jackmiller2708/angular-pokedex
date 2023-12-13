@@ -12,9 +12,7 @@ import { Subject } from 'rxjs';
   templateUrl: './pokemon.component.html',
   styleUrl: './pokemon.component.scss',
   imports: [CommonModule, BreadcrumbsComponent, NgOptimizedImage],
-  host: {
-    class: 'flex flex-col h-full w-full',
-  },
+  host: { class: 'flex flex-col h-full w-full' },
   standalone: true,
 })
 export class PokemonComponent implements IObserverSafe {
