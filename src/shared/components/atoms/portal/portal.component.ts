@@ -1,72 +1,58 @@
-import { Component, Injector, Input, TemplateRef, ViewContainerRef } from '@angular/core';
-import { DomPortalOutlet, TemplatePortal } from '@angular/cdk/portal';
+import { AfterViewInit, Component, Input, OnDestroy, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { PortalService } from './service';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-portal',
-  template: '',
-  host: { class: 'hidden' },
+  template: `
+    <ng-template let-portalId="portalId" let-zIndex="zIndex">
+      <div class="absolute top-0 left-0" id="portal-{{ portalId }}" [ngStyle]="{ zIndex }">
+        <ng-content />
+      </div>
+    </ng-template>
+  `,
+  host: { class: 'hidden', ngSkipHydration: 'true' },
   imports: [CommonModule],
   standalone: true,
 })
-export class PortalComponent {
-  private _portal: TemplatePortal | undefined;
-  private _outlet: DomPortalOutlet | undefined;
+export class PortalComponent implements AfterViewInit, OnDestroy {
+  @ViewChild(TemplateRef)
+  private readonly _template!: TemplateRef<any>;
 
-  private _attachTo: 'body' | HTMLElement;
-
-  private get _isClient(): boolean {
-    return typeof window !== 'undefined';
-  }
-
-  private get _attachEl(): HTMLElement {
-    return this._attachTo === 'body' ? document?.body : this._attachTo;
-  }
-
-  private get _portalOutlet(): DomPortalOutlet {
-    return (this._outlet = this._outlet ?? new DomPortalOutlet(this._attachEl));
-  }
-
-  @Input({ required: true })
-  set template(value: TemplateRef<any>) {
-    if (this._isClient) {
-      this._portal = this._getPortal(value);
-    }
-  }
-
-  @Input()
-  set attachTo(value: 'body' | HTMLElement) {
-    this._attachTo = value;
-  }
+  private _id: string | undefined;
 
   @Input()
   set isVisible(value: boolean) {
-    if (!this._portal) {
+    if (!this._id) {
       return;
     }
 
-    if (this._portal.isAttached && !value) {
-      this._portal.detach();
+    if (value) {
+      this._portalService.attach(this._id);
     }
 
-    if (!this._portal.isAttached && value) {
-      this._portal.attach(this._portalOutlet);
+    if (!value) {
+      this._portalService.detach(this._id);
     }
   }
 
   constructor(
     private readonly _viewContainerRef: ViewContainerRef,
-    private readonly _injector: Injector
-  ) {
-    this._attachTo = 'body';
+    private readonly _portalService: PortalService
+  ) {}
+
+  ngAfterViewInit() {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    this._id = this._portalService.register(
+      this._template,
+      this._viewContainerRef
+    );
   }
 
-  private _getPortal(template: TemplateRef<any>): TemplatePortal {
-    return new TemplatePortal(
-      template,
-      this._viewContainerRef,
-      {},
-      this._injector
-    );
-  } 
+  ngOnDestroy(): void {
+    this._portalService.unregister(this._id!);
+  }
 }
