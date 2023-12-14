@@ -6,9 +6,7 @@ import { Component } from '@angular/core';
   templateUrl: './resources.component.html',
   styleUrl: './resources.component.scss',
   imports: [CommonModule, NgOptimizedImage],
-  host: {
-    class: 'flex h-full w-full items-center justify-center',
-  },
+  host: { class: 'flex h-full w-full items-center justify-center' },
   standalone: true,
 })
 export class ResourcesComponent {}

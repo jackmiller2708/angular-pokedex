@@ -1,15 +1,13 @@
-<app-portal [template]="loaderTemplate" [isVisible]="isLoading">
-  <ng-template #loaderTemplate>
-    <p class="absolute h-screen w-screen top-0 left-0 bg-slate-400">Loading</p>
-  </ng-template>
+<app-portal [isVisible]="isLoading">
+  <p class="h-screen w-screen top-0 left-0 bg-slate-400">Loading</p>
 </app-portal>
 
 <app-header class="px-6">
   <div class="h-full flex justify-between">
     <div class="h-full flex gap-2 items-center text-lg font-medium text-white">
       <app-link to="/regions">Regions</app-link>
-      <app-link to="/pokedexes">Pokedexes</app-link>
-      <app-link to="/pokemons">Pokemons</app-link>
+      <app-link to="/pokedexes">Pokédexes</app-link>
+      <app-link to="/pokemons">Pokémons</app-link>
     </div>
 
     <!-- <div class="h-full flex items-center">

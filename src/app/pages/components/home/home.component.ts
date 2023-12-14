@@ -1,8 +1,8 @@
 import { ActivatedRoute, Data, RouterModule } from '@angular/router';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { LinkComponent, ListComponent } from '@components/atoms';
 import { IObserverSafe, ResourceList } from '@interfaces/application';
 import { RegionCardComponent } from '@components/molecules';
-import { LinkComponent, ListComponent } from '@components/atoms';
 import { HelperService } from '@services/application';
 import { Component } from '@angular/core';
 import { Subject } from 'rxjs';

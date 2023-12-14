@@ -4,10 +4,12 @@ import { RouterEvent } from "@models/application/utilities";
 
 export class RouterHelper {
   /**
-   * Transforms router events to emit the loading state
-   * after a `waitTime` number of milliseconds
+   * Transforms router events to emit the `boolean` loading state
+   * after a `waitTime` number of milliseconds. 
+   * @param waitTime The time that the operator should wait before emitting `true`.
+   * @param transitionOutTime The time that the operator should wait before emitting `false`. Default to `100ms`.
    */
-  toLoading(waitTime: number): UnaryFunction<Observable<RouterEvent>, Observable<boolean>> {
+  toLoading(waitTime: number, transitionOutTime: number = 100): UnaryFunction<Observable<RouterEvent>, Observable<boolean>> {
     const _onlyNavStartOrEnd = (event: RouterEvent): event is NavigationStart | NavigationEnd => {
       return event instanceof NavigationStart || event instanceof NavigationEnd
     }
@@ -16,7 +18,7 @@ export class RouterHelper {
       return iif(
         () => event instanceof NavigationStart,
         timer(waitTime).pipe(map(() => true)),
-        timer(100).pipe(map(() => false))
+        timer(transitionOutTime).pipe(map(() => false))
       );
     }
 

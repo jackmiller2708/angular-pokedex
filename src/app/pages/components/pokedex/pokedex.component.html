@@ -4,13 +4,15 @@
   <span>Pokedex: {{ dataSource.name }}</span>
 
   <div class="flex flex-wrap gap-2">
-    @for (pokemon of dataSource.pokemonEntries; track $index) {
-      <app-pokemon-card 
-        class="h-[294px] w-[254px]"
-        [dataSource]="$any(pokemon)" 
-        [maxIdDigits]="countDigits"
-        [showEntryNo]="true"
-      ></app-pokemon-card>
+    @for (pokemon of dataSource.pokemonEntries; track pokemon) {
+      <app-link [to]="[breadcrumbs.last()!.path, $any(pokemon).name]">
+        <app-pokemon-card 
+          class="h-[294px] w-[254px]"
+          [dataSource]="$any(pokemon)" 
+          [maxIdDigits]="countDigits"
+          [showEntryNo]="true"
+        />
+      </app-link>
     }
   </div>
 }

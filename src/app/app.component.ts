@@ -23,9 +23,7 @@ const imports = [
   styleUrls: ['./app.component.scss'],
   imports,
   providers: [AppStateService],
-  host: {
-    class: 'relative w-screen h-screen flex flex-col overflow-hidden',
-  },
+  host: { class: 'relative w-screen h-screen flex flex-col overflow-hidden' },
   standalone: true,
 })
 export class AppComponent implements IObserverSafe {
@@ -58,6 +56,14 @@ export class AppComponent implements IObserverSafe {
     this._ngDestroy$.next();
   }
 
+  private _onLoadingChange(value: boolean): void {
+    this._appStateService.setLoading(value);
+  }
+
+  private _onLoadingStateChange(value: boolean): void {
+    this._isLoading = value;
+  }
+
   private _initData(): void {
     const { rxjs: { observableRegistrarFactory }, router: { toLoading } } = this._helperService;
     const { isLoading$: loadingState$ } = this._appStateService;
@@ -68,13 +74,5 @@ export class AppComponent implements IObserverSafe {
 
     register(eventDrivenLoading$, this._onLoadingChange);
     register(loadingState$, this._onLoadingStateChange);
-  }
-
-  private _onLoadingChange(value: boolean): void {
-    this._appStateService.setLoading(value);
-  }
-
-  private _onLoadingStateChange(value: boolean): void {
-    this._isLoading = value;
   }
 }

@@ -4,7 +4,7 @@
   <p>{{ dataSource.name }}</p>
 
   @for (pokedex of dataSource.pokedexes; track $index) {
-    <a [routerLink]="['/', '-', dataSource.name, pokedex.name]">
+    <a [routerLink]="[breadcrumbs.last()!.path, pokedex.name]">
       <div>{{ pokedex.name }}</div>
     </a>
   }
