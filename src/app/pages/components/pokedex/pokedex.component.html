@@ -3,16 +3,21 @@
 
   <span>Pokedex: {{ dataSource.name }}</span>
 
-  <div class="flex flex-wrap gap-2">
-    @for (pokemon of dataSource.pokemonEntries; track pokemon) {
-      <app-link [to]="[breadcrumbs.last()!.path, $any(pokemon).name]">
+  <app-list 
+    class="h-full flex flex-wrap gap-2"
+    [dataSource]="$any(dataSource.pokemonEntries)" 
+    [template]="pokemonCard" 
+    ngSkyHydration
+  >
+    <ng-template #pokemonCard let-pokemon="item">
+      <app-link [to]="[breadcrumbs.last()!.path, pokemon.name]">
         <app-pokemon-card 
           class="h-[294px] w-[254px]"
-          [dataSource]="$any(pokemon)" 
+          [dataSource]="pokemon" 
           [maxIdDigits]="countDigits"
           [showEntryNo]="true"
         />
       </app-link>
-    }
-  </div>
+    </ng-template>
+  </app-list>
 }
