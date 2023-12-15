@@ -1,4 +1,4 @@
-import { UnaryFunction, Observable, iif, timer, map, pipe, filter, switchMap } from "rxjs";
+import { UnaryFunction, Observable, iif, timer, map, pipe, filter, switchMap, skip } from "rxjs";
 import { NavigationStart, NavigationEnd } from "@angular/router";
 import { RouterEvent } from "@models/application/utilities";
 
@@ -22,6 +22,12 @@ export class RouterHelper {
       );
     }
 
-    return pipe(filter(_onlyNavStartOrEnd), switchMap(_toLoaderState));
+    return pipe(
+      filter(_onlyNavStartOrEnd),
+      // Skips the first router event cycle to remove
+      // late loading screen on initial load.
+      skip(2),
+      switchMap(_toLoaderState)
+    );
   }
 }
