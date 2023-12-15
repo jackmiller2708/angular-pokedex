@@ -1,4 +1,4 @@
-@if (template) { 
+@if (template && !virtualScrollOptions.enabled) { 
   @for (item of dataSource; track item) {
     <ng-container
       [ngClass]="itemClass"
@@ -8,7 +8,21 @@
   } 
 }
 
-@else {
+@else if (template && virtualScrollOptions.enabled) {
+  <cdk-virtual-scroll-viewport 
+    class="h-full"
+    [itemSize]="virtualScrollOptions.itemHeight" 
+  >
+    <ng-container
+      *cdkVirtualFor="let item of dataSource"
+      [ngClass]="itemClass"
+      [ngTemplateOutlet]="template"
+      [ngTemplateOutletContext]="{ item: item }"
+    />
+  </cdk-virtual-scroll-viewport>
+}
+
+@else if(!template) {
   @for (item of dataSource; track $index) {
     <div>{{ item }}</div>
   } 
