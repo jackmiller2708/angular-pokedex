@@ -31,6 +31,10 @@ export class HelperService {
     this._router = Object.freeze(new RouterHelper());
   }
 
+  takeMeaningfulValue<T>(item: T | undefined): item is T {
+    return !!item;
+  }
+
   getNumDigits(num: number): number {
     return (Math.log(num) * Math.LOG10E + 1) | 0;
   }
