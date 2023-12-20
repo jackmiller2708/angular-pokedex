@@ -1,5 +1,7 @@
 import { CdkVirtualScrollViewport, VirtualScrollStrategy } from '@angular/cdk/scrolling';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { VirtualScrollOptions } from '../interfaces';
+import { ListComponent } from '../list.component';
 import { Injector } from '@angular/core';
 
 export class FlexVirtualScrollStrategy implements VirtualScrollStrategy {
@@ -7,7 +9,7 @@ export class FlexVirtualScrollStrategy implements VirtualScrollStrategy {
 
   readonly scrolledIndexChange: Observable<number>;
 
-  constructor() {
+  constructor(private readonly _options: VirtualScrollOptions) {
     this._scrollIndexChange = new BehaviorSubject(0);
     this.scrolledIndexChange = this._scrollIndexChange.asObservable();
   }
@@ -42,5 +44,7 @@ export class FlexVirtualScrollStrategy implements VirtualScrollStrategy {
 }
 
 export function flexVirtualScrollStrategyFactory(injector: Injector): FlexVirtualScrollStrategy {
-  return new FlexVirtualScrollStrategy();
+  const { virtualScrollOptions } = injector.get(ListComponent);
+
+  return new FlexVirtualScrollStrategy(virtualScrollOptions);
 }
