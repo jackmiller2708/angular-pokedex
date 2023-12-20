@@ -17,9 +17,13 @@ const errorResponseHandlerFactory = (router: Router): ErrorResponseResolverFn<Ob
 };
 
 export const regionResolver: ResolveFn<Region> = (route, state) => {
+  const resource = inject(RegionService);
   const router = inject(Router);
 
-  return inject(RegionService)
+  return resource
     .getResource(route.params['region'])
-    .pipe(catchError(errorResponseHandlerFactory(router)));
+    .pipe(
+      resource.operators.extendPokedexEntries(),
+      catchError(errorResponseHandlerFactory(router))
+    );
 };

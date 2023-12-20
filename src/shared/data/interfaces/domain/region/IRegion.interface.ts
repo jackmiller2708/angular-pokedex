@@ -1,6 +1,7 @@
 import { Name, NamedResource } from '../utilities';
 import { List, RecordOf } from 'immutable';
 import { IHasAssets } from '@interfaces/application/assets';
+import { Pokedex } from '../pokedex';
 
 export interface IRegion extends IHasAssets {
   id: number;
@@ -8,7 +9,7 @@ export interface IRegion extends IHasAssets {
   names: List<Name>;
   locations: List<NamedResource>;
   mainGeneration: NamedResource;
-  pokedexes: List<NamedResource>;
+  pokedexes: List<NamedResource> | List<Pokedex>;
   versionGroups: List<NamedResource>;
 }
 

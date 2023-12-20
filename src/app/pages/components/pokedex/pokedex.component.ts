@@ -1,27 +1,30 @@
 import { BreadcrumbsComponent, PokemonCardComponent } from '@components/molecules';
+import { LinkComponent, ListComponent } from '@components/atoms';
 import { Breadcrumb, IObserverSafe } from '@interfaces/application';
 import { ActivatedRoute, Data } from '@angular/router';
 import { PokedexPageService } from './services';
 import { HelperService } from '@services/application';
-import { LinkComponent } from '@components/atoms';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Pokedex } from '@interfaces/domain';
 import { Subject } from 'rxjs';
 import { List } from 'immutable';
 
-const imports = [
-  CommonModule,
-  PokemonCardComponent,
-  BreadcrumbsComponent,
-  LinkComponent,
-];
+function imports(): any[] {
+  return [
+    CommonModule,
+    PokemonCardComponent,
+    BreadcrumbsComponent,
+    ListComponent,
+    LinkComponent,
+  ];
+}
 
 @Component({
   selector: 'app-pokedex',
   templateUrl: './pokedex.component.html',
   styleUrl: './pokedex.component.scss',
-  imports,
+  imports: imports(),
   providers: [PokedexPageService],
   host: { class: 'block h-full w-full overflow-y-auto' },
   standalone: true,

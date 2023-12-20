@@ -2,18 +2,27 @@ import { Description, Name, NamedResource } from '../utilities';
 import { IPokedex, Pokedex as TPokedex } from '@interfaces/domain';
 import { IPokedex as IPokedexDto } from '@interfaces/dtos';
 import { AdaptableRecordFactory } from '@models/application/utilities';
-import { List } from 'immutable';
 import { PokemonEntry } from './PokemonEntry.model';
+import { AssetInfo } from '@models/application/assets';
+import { List } from 'immutable';
+import { PokedexAlternateName } from '.';
 
 const defaultValues: IPokedex = {
   id: 0,
   name: '',
+  alternateName: 'N/A',
   isMainSeries: false,
   descriptions: List(),
   names: List(),
   pokemonEntries: List<any>(),
   region: NamedResource(),
   versionGroups: List(),
+  assetsInfo: List([
+    AssetInfo({
+      location: 'pokedex/generic.png',
+      name: 'generic-pokedex',
+    }),
+  ]),
 };
 
 const adaptor = (values?: IPokedexDto): TPokedex => {
@@ -30,6 +39,7 @@ const adaptor = (values?: IPokedexDto): TPokedex => {
   return Pokedex({
     ...others,
     isMainSeries: is_main_series,
+    alternateName: PokedexAlternateName(values?.name ?? ''),
     descriptions: List(descriptions?.map(Description.adaptor)),
     names: List(names?.map(Name.adaptor)),
     pokemonEntries: List(pokemon_entries?.map(PokemonEntry.adaptor)),

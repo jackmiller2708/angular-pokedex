@@ -1,6 +1,7 @@
-import { ActivatedRoute, Data, RouterModule } from '@angular/router';
+import { BreadcrumbsComponent, PokedexCardComponent } from '@components/molecules';
+import { LinkComponent, ListComponent } from '@components/atoms';
 import { Breadcrumb, IObserverSafe } from '@interfaces/application';
-import { BreadcrumbsComponent } from '@components/molecules';
+import { ActivatedRoute, Data } from '@angular/router';
 import { HelperService } from '@services/application';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
@@ -8,12 +9,22 @@ import { Subject } from 'rxjs';
 import { Region } from '@interfaces/domain';
 import { List } from 'immutable';
 
+function imports(): any[] {
+  return [
+    CommonModule,
+    PokedexCardComponent,
+    BreadcrumbsComponent,
+    ListComponent,
+    LinkComponent,
+  ];
+}
+
 @Component({
   selector: 'app-region',
   templateUrl: './region.component.html',
   styleUrl: './region.component.scss',
-  imports: [CommonModule, RouterModule, BreadcrumbsComponent],
-  host: { class: 'block h-full w-full p-4' },
+  imports: imports(),
+  host: { class: 'flex flex-col h-full w-full p-4 gap-2' },
   standalone: true,
 })
 export class RegionComponent implements IObserverSafe {

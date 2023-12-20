@@ -23,7 +23,7 @@ export const pokedexResolver: ResolveFn<Pokedex> = (route, state) => {
   return resource
     .getResource(route.params['pokedex'])
     .pipe(
-      resource.extendPokemonEntries(),
+      resource.operators.extendPokemonEntries(),
       catchError(errorResponseHandlerFactory(router))
     );
 };

@@ -8,20 +8,22 @@ import { Component } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Region } from '@interfaces/domain';
 
-const imports = [
-  CommonModule,
-  NgOptimizedImage,
-  RouterModule,
-  ListComponent,
-  LinkComponent,
-  RegionCardComponent,
-];
+function imports(): any[] {
+  return [
+    CommonModule,
+    NgOptimizedImage,
+    RouterModule,
+    ListComponent,
+    LinkComponent,
+    RegionCardComponent,
+  ];
+}
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
-  imports,
+  imports: imports(),
   host: { class: 'relative w-full h-full flex flex-col overflow-hidden' },
   standalone: true,
 })
@@ -61,4 +63,3 @@ export class HomeComponent implements IObserverSafe {
     register(data, this._onPageData);
   }
 }
- 

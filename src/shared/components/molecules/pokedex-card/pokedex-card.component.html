@@ -1,0 +1,6 @@
+@if (dataSource) {
+  <app-card class="flex flex-col gap-2 px-2 py-4">
+    <img height="200" width="200" [ngSrc]="asset.location" [alt]="asset.name" />
+    <div class="font-medium">{{ dataSource.alternateName | titlecase }}</div>
+  </app-card>
+}
