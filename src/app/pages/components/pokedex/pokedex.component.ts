@@ -1,9 +1,9 @@
 import { BreadcrumbsComponent, PokemonCardComponent } from '@components/molecules';
+import { LinkComponent, ListComponent } from '@components/atoms';
 import { Breadcrumb, IObserverSafe } from '@interfaces/application';
 import { ActivatedRoute, Data } from '@angular/router';
 import { PokedexPageService } from './services';
 import { HelperService } from '@services/application';
-import { LinkComponent } from '@components/atoms';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Pokedex } from '@interfaces/domain';
@@ -15,6 +15,7 @@ function imports(): any[] {
     CommonModule,
     PokemonCardComponent,
     BreadcrumbsComponent,
+    ListComponent,
     LinkComponent,
   ];
 }
