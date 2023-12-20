@@ -1,6 +1,6 @@
+import { BreadcrumbsComponent, PokedexCardComponent } from '@components/molecules';
 import { LinkComponent, ListComponent } from '@components/atoms';
 import { Breadcrumb, IObserverSafe } from '@interfaces/application';
-import { BreadcrumbsComponent } from '@components/molecules';
 import { ActivatedRoute, Data } from '@angular/router';
 import { HelperService } from '@services/application';
 import { CommonModule } from '@angular/common';
@@ -15,6 +15,7 @@ import { List } from 'immutable';
   styleUrl: './region.component.scss',
   imports: [
     CommonModule,
+    PokedexCardComponent,
     BreadcrumbsComponent,
     ListComponent,
     LinkComponent,

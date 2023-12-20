@@ -1,15 +1,15 @@
 @if (dataSource && breadcrumbs) {
   <app-breadcrumbs [dataSource]="breadcrumbs" />
 
-  <div class="w-full text-center">
+  <div class="w-full text-center cursor-default">
     <p class="text-3xl font-semibold">Welcome to the {{ dataSource.name | titlecase }} region!</p>
     <p class="text-2xl">please select a Pokédex to begin.</p>
   </div>
 
-  <app-list [dataSource]="dataSource.pokedexes" [template]="pokedexTemplate">
+  <app-list class="flex gap-2" [dataSource]="$any(dataSource.pokedexes)" [template]="pokedexTemplate">
     <ng-template #pokedexTemplate let-pokedex="item">
       <app-link [to]="[breadcrumbs.last()!.path, pokedex.name]">
-        <div>{{ pokedex.name }}</div>
+        <app-pokedex-card [dataSource]="pokedex"/>
       </app-link>
     </ng-template>
   </app-list>
