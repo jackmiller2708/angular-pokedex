@@ -5,10 +5,12 @@ import { AdaptableRecordFactory } from '@models/application/utilities';
 import { PokemonEntry } from './PokemonEntry.model';
 import { AssetInfo } from '@models/application/assets';
 import { List } from 'immutable';
+import { PokedexAlternateName } from '.';
 
 const defaultValues: IPokedex = {
   id: 0,
   name: '',
+  alternateName: 'N/A',
   isMainSeries: false,
   descriptions: List(),
   names: List(),
@@ -37,6 +39,7 @@ const adaptor = (values?: IPokedexDto): TPokedex => {
   return Pokedex({
     ...others,
     isMainSeries: is_main_series,
+    alternateName: PokedexAlternateName(values?.name ?? ''),
     descriptions: List(descriptions?.map(Description.adaptor)),
     names: List(names?.map(Name.adaptor)),
     pokemonEntries: List(pokemon_entries?.map(PokemonEntry.adaptor)),

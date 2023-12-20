@@ -7,6 +7,7 @@ import { Pokemon } from '../pokemon';
 export interface IPokedex extends IHasAssets {
   id: number;
   name: string;
+  alternateName: string;
   isMainSeries: boolean;
   descriptions: List<Description>;
   names: List<Name>;
