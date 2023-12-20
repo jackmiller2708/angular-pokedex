@@ -20,7 +20,7 @@ import { List } from 'immutable';
     ListComponent,
     LinkComponent,
   ],
-  host: { class: 'block h-full w-full p-4' },
+  host: { class: 'flex flex-col h-full w-full p-4 gap-2' },
   standalone: true,
 })
 export class RegionComponent implements IObserverSafe {

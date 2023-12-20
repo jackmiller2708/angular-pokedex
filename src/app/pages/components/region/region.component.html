@@ -6,7 +6,7 @@
     <p class="text-2xl">please select a Pokédex to begin.</p>
   </div>
 
-  <app-list class="flex gap-2" [dataSource]="$any(dataSource.pokedexes)" [template]="pokedexTemplate">
+  <app-list class="flex-1 min-h-0 flex gap-2" [dataSource]="$any(dataSource.pokedexes)" [template]="pokedexTemplate">
     <ng-template #pokedexTemplate let-pokedex="item">
       <app-link [to]="[breadcrumbs.last()!.path, pokedex.name]">
         <app-pokedex-card [dataSource]="pokedex"/>

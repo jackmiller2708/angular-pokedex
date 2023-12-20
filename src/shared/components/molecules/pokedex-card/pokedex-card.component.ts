@@ -1,6 +1,7 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { AssetInfo as TAssetInfo } from '@interfaces/application';
 import { Component, Input } from '@angular/core';
+import { CardComponent } from '@components/atoms';
 import { AssetInfo } from '@models/application/assets';
 import { Pokedex } from '@interfaces/domain';
 
@@ -8,7 +9,7 @@ import { Pokedex } from '@interfaces/domain';
   selector: 'app-pokedex-card',
   templateUrl: './pokedex-card.component.html',
   styleUrl: './pokedex-card.component.scss',
-  imports: [CommonModule, NgOptimizedImage],
+  imports: [CommonModule, NgOptimizedImage, CardComponent],
   standalone: true,
 })
 export class PokedexCardComponent {
