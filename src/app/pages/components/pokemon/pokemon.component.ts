@@ -4,14 +4,18 @@ import { BreadcrumbsComponent } from '@components/molecules';
 import { ActivatedRoute, Data } from '@angular/router';
 import { HelperService } from '@services/application';
 import { Component } from '@angular/core';
-import { List } from 'immutable';
 import { Subject } from 'rxjs';
+import { List } from 'immutable';
+
+function imports(): any[] {
+  return [CommonModule, BreadcrumbsComponent, NgOptimizedImage];
+}
 
 @Component({
   selector: 'app-pokemon',
   templateUrl: './pokemon.component.html',
   styleUrl: './pokemon.component.scss',
-  imports: [CommonModule, BreadcrumbsComponent, NgOptimizedImage],
+  imports: imports(),
   host: { class: 'flex flex-col h-full w-full' },
   standalone: true,
 })

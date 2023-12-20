@@ -10,18 +10,20 @@ import { Pokedex } from '@interfaces/domain';
 import { Subject } from 'rxjs';
 import { List } from 'immutable';
 
-const imports = [
-  CommonModule,
-  PokemonCardComponent,
-  BreadcrumbsComponent,
-  LinkComponent,
-];
+function imports(): any[] {
+  return [
+    CommonModule,
+    PokemonCardComponent,
+    BreadcrumbsComponent,
+    LinkComponent,
+  ];
+}
 
 @Component({
   selector: 'app-pokedex',
   templateUrl: './pokedex.component.html',
   styleUrl: './pokedex.component.scss',
-  imports,
+  imports: imports(),
   providers: [PokedexPageService],
   host: { class: 'block h-full w-full overflow-y-auto' },
   standalone: true,

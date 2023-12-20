@@ -9,17 +9,21 @@ import { Subject } from 'rxjs';
 import { Region } from '@interfaces/domain';
 import { List } from 'immutable';
 
-@Component({
-  selector: 'app-region',
-  templateUrl: './region.component.html',
-  styleUrl: './region.component.scss',
-  imports: [
+function imports(): any[] {
+  return [
     CommonModule,
     PokedexCardComponent,
     BreadcrumbsComponent,
     ListComponent,
     LinkComponent,
-  ],
+  ];
+}
+
+@Component({
+  selector: 'app-region',
+  templateUrl: './region.component.html',
+  styleUrl: './region.component.scss',
+  imports: imports(),
   host: { class: 'flex flex-col h-full w-full p-4 gap-2' },
   standalone: true,
 })
