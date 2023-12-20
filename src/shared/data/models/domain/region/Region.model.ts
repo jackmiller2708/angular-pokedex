@@ -1,3 +1,4 @@
+import { NamedResource as TNamedResource } from '@interfaces/domain/utilities';
 import { IRegion, Region as TRegion } from '@interfaces/domain';
 import { AdaptableRecordFactory } from '@models/application/utilities';
 import { IRegion as IRegionDto } from '@interfaces/dtos';
@@ -11,7 +12,7 @@ const defaultValues: IRegion = {
   name: '',
   names: List(),
   locations: List(),
-  pokedexes: List(),
+  pokedexes: List<TNamedResource>(),
   versionGroups: List(),
   assetsInfo: List(),
   mainGeneration: NamedResource(),
