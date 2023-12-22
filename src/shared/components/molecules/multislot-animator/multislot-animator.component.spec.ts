@@ -1,6 +1,5 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { MultislotAnimatorComponent } from './multislot-animator.component';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 describe('MultislotAnimatorComponent', () => {
   let component: MultislotAnimatorComponent;
@@ -8,10 +7,9 @@ describe('MultislotAnimatorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MultislotAnimatorComponent]
-    })
-    .compileComponents();
-    
+      imports: [MultislotAnimatorComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(MultislotAnimatorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
