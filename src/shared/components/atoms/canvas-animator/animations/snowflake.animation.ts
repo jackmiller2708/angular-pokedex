@@ -9,6 +9,8 @@ export class Snowflake implements IAnimation {
   private _x: number;
   private _y: number;
 
+  readonly backgroundColor: string;
+
   constructor(private readonly _scene: IScene) {
     this._opacity = Math.random();
     this._ySpeed = Math.random() * 2 + 1;
@@ -17,6 +19,8 @@ export class Snowflake implements IAnimation {
 
     this._x = Math.random() * _scene.width;
     this._y = Math.random() * _scene.height;
+    
+    this.backgroundColor = 'rgb(239 68 68)';
   }
 
   update(): void {

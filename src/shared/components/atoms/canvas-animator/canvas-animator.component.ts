@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Inject, NgZone, Type, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, HostListener, Inject, NgZone, Type, ViewChild } from '@angular/core';
 import { CANVAS_ANIMATION } from './constants';
 import { provideAnimation } from './providers';
 import { CommonModule } from '@angular/common';
@@ -39,8 +39,19 @@ export class CanvasAnimatorComponent implements AfterViewInit {
 
     const animation = new this._tAnimation({ width, height });
 
-    this._ngZone.runOutsideAngular(() =>
-      animation.animate(canvasEl.getContext('2d')!)
-    );
+    this._ngZone.runOutsideAngular(() => {
+      canvasEl.style.backgroundColor = animation.backgroundColor;
+      animation.animate(canvasEl.getContext('2d')!);
+    });
+  }
+
+  @HostListener('resize')
+  onWindowResized(): void {
+    const { nativeElement: canvasEl } = this._animator;
+    const { nativeElement: hostEl } = this._elementRef;
+    const { offsetWidth: width, offsetHeight: height } = hostEl;
+
+    canvasEl.height = height;
+    canvasEl.width = width;
   }
 }
