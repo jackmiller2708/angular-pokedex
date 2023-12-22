@@ -1,4 +1,6 @@
 import { HeaderComponent, LinkComponent, PortalComponent, SearchInputComponent } from '@components/atoms';
+import { HeaderBannerConfig as THeaderBannerConfig } from '@components/molecules/header-banner/interfaces';
+import { HeaderBannerComponent } from '@components/molecules';
 import { Router, RouterOutlet } from '@angular/router';
 import { Component, Inject } from '@angular/core';
 import { LOADER_WAIT_TIME } from '@constants/injection-tokens';
@@ -7,6 +9,7 @@ import { IObserverSafe } from '@interfaces/application';
 import { HelperService } from '@services/application';
 import { CommonModule } from '@angular/common';
 import { Subject } from 'rxjs';
+import { HeaderBannerConfig } from '@components/molecules/header-banner/models';
 
 const imports = [
   CommonModule,
@@ -15,6 +18,7 @@ const imports = [
   SearchInputComponent,
   LinkComponent,
   PortalComponent,
+  HeaderBannerComponent
 ];
 
 @Component({
@@ -29,9 +33,14 @@ const imports = [
 export class AppComponent implements IObserverSafe {
   private readonly _ngDestroy$: Subject<void>;
   private _isLoading: boolean;
+  private _headerBannerConfig: THeaderBannerConfig;
 
   get isLoading(): boolean {
     return this._isLoading;
+  }
+
+  get headerBannerConfig(): THeaderBannerConfig {
+    return this._headerBannerConfig;
   }
 
   constructor(
@@ -46,6 +55,10 @@ export class AppComponent implements IObserverSafe {
   ) {
     this._ngDestroy$ = new Subject();
     this._isLoading = false;
+    this._headerBannerConfig = HeaderBannerConfig({
+      visible: true,
+      content: '🎄 Merry Christmas!!!'
+    });
   }
 
   ngOnInit(): void {

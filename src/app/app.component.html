@@ -2,6 +2,12 @@
   <p class="h-screen w-screen top-0 left-0 bg-slate-400">Loading</p>
 </app-portal>
 
+@if(headerBannerConfig.visible) {
+  <app-header-banner 
+    [animation]="headerBannerConfig.animation" 
+    [content]="headerBannerConfig.content"
+  />
+}
 
 <app-header class="header px-6">
   <div class="h-full flex justify-between">
