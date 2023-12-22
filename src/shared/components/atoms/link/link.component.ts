@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
   templateUrl: './link.component.html',
   styleUrl: './link.component.scss',
   imports: [CommonModule, RouterModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
 export class LinkComponent {

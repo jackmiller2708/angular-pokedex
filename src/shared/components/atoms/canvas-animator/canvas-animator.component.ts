@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Inject, NgZone, Type, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Inject, NgZone, Type, ViewChild } from '@angular/core';
 import { CANVAS_ANIMATION } from './constants';
 import { provideAnimation } from './providers';
 import { CommonModule } from '@angular/common';
@@ -11,6 +11,7 @@ import { IAnimation } from './interfaces';
   providers: [provideAnimation()],
   imports: [CommonModule],
   host: { class: 'block h-full w-full', ngSkipHydration: 'true' },
+  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
 export class CanvasAnimatorComponent implements AfterViewInit {

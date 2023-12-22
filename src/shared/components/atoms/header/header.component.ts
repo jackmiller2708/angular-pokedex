@@ -1,4 +1,4 @@
-import { Component, HostBinding } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -6,11 +6,8 @@ import { CommonModule } from '@angular/common';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
   imports: [CommonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { class: 'w-full h-16 bg-red-500' },
   standalone: true,
 })
-export class HeaderComponent {
-  @HostBinding('class')
-  private get _classes(): string[] {
-    return ['w-full', 'h-16', 'bg-red-500'];
-  }
-}
+export class HeaderComponent {}

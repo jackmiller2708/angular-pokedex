@@ -1,6 +1,6 @@
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { provideMultislotAnimation } from './providers';
 import { CanvasAnimatorComponent } from '@components/atoms';
-import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Animation } from '@components/atoms/canvas-animator/constants';
 
@@ -11,6 +11,7 @@ import { Animation } from '@components/atoms/canvas-animator/constants';
   providers: [provideMultislotAnimation()],
   imports: [CommonModule, CanvasAnimatorComponent],
   host: { class: 'block h-full w-full', ngSkipHydration: 'true' },
+  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
 export class MultislotAnimatorComponent {
