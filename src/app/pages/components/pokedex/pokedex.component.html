@@ -6,7 +6,6 @@
   <app-list 
     class="block h-full w-full"
     [dataSource]="$any(dataSource.pokemonEntries)"
-    [virtualScrollOptions]="virtualScrollOptions" 
     [template]="pokemonCard"
   >
     <ng-template #pokemonCard let-pokemon="item">
