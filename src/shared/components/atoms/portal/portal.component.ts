@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnDestroy, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, Input, OnDestroy, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { PortalService } from './service';
 import { CommonModule } from '@angular/common';
 
@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
     </ng-template>
   `,
   host: { class: 'hidden', ngSkipHydration: 'true' },
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule],
   standalone: true,
 })

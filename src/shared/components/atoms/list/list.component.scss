@@ -1,0 +1,10 @@
+:host {
+  .scroll-container ::ng-deep {
+    .cdk-virtual-scroll-content-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: var(--direction);
+      gap: var(--gap);
+    }
+  }
+}

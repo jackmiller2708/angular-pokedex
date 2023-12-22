@@ -31,6 +31,7 @@ function imports(): any[] {
 })
 export class PokedexComponent implements IObserverSafe {
   private readonly _ngDestroy$: Subject<void>;
+  
   private _dataSource: Pokedex | undefined;
   private _breadcrumbs: List<Breadcrumb> | undefined;
   private _countDigits: number;

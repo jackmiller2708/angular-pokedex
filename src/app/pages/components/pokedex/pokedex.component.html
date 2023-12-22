@@ -3,7 +3,11 @@
 
   <span>Pokedex: {{ dataSource.name }}</span>
 
-  <app-list class="flex flex-wrap gap-2" [dataSource]="$any(dataSource.pokemonEntries)" [template]="pokemonCard">
+  <app-list 
+    class="block h-full w-full"
+    [dataSource]="$any(dataSource.pokemonEntries)"
+    [template]="pokemonCard"
+  >
     <ng-template #pokemonCard let-pokemon="item">
       <app-link [to]="[breadcrumbs.last()!.path, $any(pokemon).name]">
         <app-pokemon-card 

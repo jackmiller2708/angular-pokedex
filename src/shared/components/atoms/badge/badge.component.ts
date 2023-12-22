@@ -1,4 +1,4 @@
-import { Component, HostBinding } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -6,11 +6,8 @@ import { CommonModule } from '@angular/common';
   templateUrl: './badge.component.html',
   styleUrl: './badge.component.scss',
   imports: [CommonModule],
+  host: { class: 'rounded-md py-2 px-3' },
+  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
-export class BadgeComponent {
-  @HostBinding('class')
-  private get _classes(): string[] {
-    return ['rounded-md', 'py-2', 'px-3'];
-  }
-}
+export class BadgeComponent {}
