@@ -30,9 +30,20 @@ export class CanvasAnimatorComponent implements AfterViewInit {
       return;
     }
 
+    this._animate();
+  }
+
+  @HostListener('window:resize')
+  onWindowResized(): void {
+    this._animate();
+  }
+
+  private _animate() {
     const { nativeElement: canvasEl } = this._animator;
     const { nativeElement: hostEl } = this._elementRef;
     const { offsetWidth: width, offsetHeight: height } = hostEl;
+
+    canvasEl.getContext('2d')!.clearRect(0, 0, canvasEl.height, canvasEl.width);
 
     canvasEl.height = height;
     canvasEl.width = width;
@@ -43,15 +54,5 @@ export class CanvasAnimatorComponent implements AfterViewInit {
       canvasEl.style.backgroundColor = animation.backgroundColor;
       animation.animate(canvasEl.getContext('2d')!);
     });
-  }
-
-  @HostListener('resize')
-  onWindowResized(): void {
-    const { nativeElement: canvasEl } = this._animator;
-    const { nativeElement: hostEl } = this._elementRef;
-    const { offsetWidth: width, offsetHeight: height } = hostEl;
-
-    canvasEl.height = height;
-    canvasEl.width = width;
   }
 }

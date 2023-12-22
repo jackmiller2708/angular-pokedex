@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './header-banner.component.html',
   styleUrl: './header-banner.component.scss',
   imports: [CommonModule, MultislotAnimatorComponent],
-  host: { class: 'relative flex items-center justify-center w-full h-[40px]' },
+  host: { class: 'relative flex items-center justify-center w-full h-[40px] border-b' },
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
