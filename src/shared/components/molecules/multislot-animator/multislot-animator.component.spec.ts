@@ -1,0 +1,23 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { MultislotAnimatorComponent } from './multislot-animator.component';
+
+describe('MultislotAnimatorComponent', () => {
+  let component: MultislotAnimatorComponent;
+  let fixture: ComponentFixture<MultislotAnimatorComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [MultislotAnimatorComponent]
+    })
+    .compileComponents();
+    
+    fixture = TestBed.createComponent(MultislotAnimatorComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

@@ -14,7 +14,7 @@ const imports = [
   HeaderComponent,
   SearchInputComponent,
   LinkComponent,
-  PortalComponent
+  PortalComponent,
 ];
 
 @Component({
