@@ -1,6 +1,8 @@
+import { VirtualScrollOptions as TVirtualScrollOptions } from '@components/atoms/list/interfaces';
 import { BreadcrumbsComponent, PokemonCardComponent } from '@components/molecules';
 import { LinkComponent, ListComponent } from '@components/atoms';
 import { Breadcrumb, IObserverSafe } from '@interfaces/application';
+import { VirtualScrollOptions } from '@components/atoms/list/models';
 import { ActivatedRoute, Data } from '@angular/router';
 import { PokedexPageService } from './services';
 import { HelperService } from '@services/application';
@@ -31,9 +33,15 @@ function imports(): any[] {
 })
 export class PokedexComponent implements IObserverSafe {
   private readonly _ngDestroy$: Subject<void>;
+  private readonly _virtualScrollOptions: TVirtualScrollOptions;
+  
   private _dataSource: Pokedex | undefined;
   private _breadcrumbs: List<Breadcrumb> | undefined;
   private _countDigits: number;
+
+  get virtualScrollOptions(): TVirtualScrollOptions {
+    return this._virtualScrollOptions
+  }
 
   get dataSource(): Pokedex | undefined {
     return this._dataSource;
@@ -53,6 +61,11 @@ export class PokedexComponent implements IObserverSafe {
   ) {
     this._ngDestroy$ = new Subject();
     this._countDigits = 0;
+    this._virtualScrollOptions = VirtualScrollOptions({
+      enabled: true,
+      item: { height: 249, width: 254 },
+      display: { flex: true, gap: 8 },
+    });
   }
 
   ngOnInit(): void {

@@ -1,4 +1,8 @@
+import { VirtualScrollOptions as TVirtualScrollOptions } from './interfaces';
+import { provideFlexVirtualScrollStrategy } from './providers';
 import { Component, Input, TemplateRef } from '@angular/core';
+import { VirtualScrollOptions } from './models';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { List } from 'immutable';
 
@@ -6,7 +10,8 @@ import { List } from 'immutable';
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss',
-  imports: [CommonModule],
+  imports: [CommonModule, ScrollingModule],
+  providers: [provideFlexVirtualScrollStrategy()],
   standalone: true,
 })
 export class ListComponent<T> {
@@ -14,6 +19,7 @@ export class ListComponent<T> {
   private _dataSource: List<T>;
   private _itemClass: string | undefined;
   private _styleClass: string | undefined;
+  private _virtualOptions: TVirtualScrollOptions;
 
   @Input({ required: true })
   set dataSource(value: List<T>) {
@@ -51,7 +57,17 @@ export class ListComponent<T> {
     return this._styleClass ?? '';
   }
 
+  @Input()
+  set virtualScrollOptions(value: TVirtualScrollOptions) {
+    this._virtualOptions = value;  
+  }
+
+  get virtualScrollOptions(): TVirtualScrollOptions {
+    return this._virtualOptions;
+  }
+
   constructor() {
     this._dataSource = List();
+    this._virtualOptions = VirtualScrollOptions();
   }
 }
