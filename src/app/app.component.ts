@@ -10,7 +10,6 @@ import { IObserverSafe } from '@interfaces/application';
 import { HelperService } from '@services/application';
 import { CommonModule } from '@angular/common';
 import { Subject } from 'rxjs';
-import { HeaderBannerConfig } from '@components/molecules/header-banner/models';
 
 const imports = [
   CommonModule,
