@@ -9,7 +9,7 @@ import { Animation } from '@directives/noop-animator/constants';
   styleUrl: './header-banner.component.scss',
   imports: [CommonModule, MultislotAnimatorComponent],
   host: {
-    class: 'relative flex items-center justify-center w-full h-[40px] border-b',
+    class: 'relative flex items-center justify-center w-full h-[30px] border-b', 
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
