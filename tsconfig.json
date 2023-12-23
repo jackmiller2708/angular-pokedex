@@ -29,7 +29,9 @@
       "@pipes": ["./src/shared/pipes/index.ts"],
       "@environments/*": ["./src/environments/*"],
       "@constants/*": ["./src/shared/data/constants/*"],
-      "@interceptors": ["./src/shared/interceptors/index.ts"]
+      "@interceptors": ["./src/shared/interceptors/index.ts"],
+      "@directives": ["./src/shared/directives/index.ts"],
+      "@directives/*": ["./src/shared/directives/*"]
     }
   },
   "angularCompilerOptions": {

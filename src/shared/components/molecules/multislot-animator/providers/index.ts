@@ -1,8 +1,8 @@
-import { Animation, CANVAS_ANIMATION } from '@components/atoms/canvas-animator/constants';
+import { Animation, CANVAS_ANIMATION } from '@directives/noop-animator/constants';
 import { MultislotAnimatorComponent } from '../multislot-animator.component';
 import { Injector, Provider, Type } from '@angular/core';
-import { IAnimation } from '@components/atoms/canvas-animator/interfaces';
-import { Snowflake } from '@components/atoms/canvas-animator/animations';
+import { IAnimation } from '@directives/noop-animator/interfaces';
+import { Snowflake } from '@directives/noop-animator/animations';
 
 export function provideMultislotAnimation(): Provider {
   return {

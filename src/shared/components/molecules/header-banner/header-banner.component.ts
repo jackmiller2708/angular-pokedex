@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MultislotAnimatorComponent } from '../';
 import { CommonModule } from '@angular/common';
-import { Animation } from '@components/atoms/canvas-animator/constants';
+import { Animation } from '@directives/noop-animator/constants';
 
 @Component({
   selector: 'app-header-banner',

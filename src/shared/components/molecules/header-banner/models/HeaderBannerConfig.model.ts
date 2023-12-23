@@ -1,5 +1,5 @@
 import { IHeaderBannerConfig } from '../interfaces';
-import { Animation } from '@components/atoms/canvas-animator/constants';
+import { Animation } from '@directives/noop-animator/constants';
 import { Record } from 'immutable';
 
 export const HeaderBannerConfig = Record<IHeaderBannerConfig>({

@@ -1,15 +1,15 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Input } from '@angular/core';
 import { provideMultislotAnimation } from './providers';
-import { CanvasAnimatorComponent } from '@components/atoms';
+import { NoopAnimatorDirective } from '@directives';
 import { CommonModule } from '@angular/common';
-import { Animation } from '@components/atoms/canvas-animator/constants';
+import { Animation } from '@directives/noop-animator/constants';
 
 @Component({
   selector: 'app-multislot-animator',
   templateUrl: './multislot-animator.component.html',
   styleUrl: './multislot-animator.component.scss',
   providers: [provideMultislotAnimation()],
-  imports: [CommonModule, CanvasAnimatorComponent],
+  imports: [CommonModule, NoopAnimatorDirective],
   host: { class: 'block h-full w-full', ngSkipHydration: 'true' },
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
@@ -26,7 +26,15 @@ export class MultislotAnimatorComponent {
     return this._animationType;
   }
 
-  constructor() {
+  get height(): number {
+    return this._elRef.nativeElement.offsetHeight;
+  }
+
+  get width(): number {
+    return this._elRef.nativeElement.offsetWidth;
+  }
+
+  constructor(private readonly _elRef: ElementRef<HTMLElement>) {
     this._animationType = Animation.SNOWFLAKE;
   }
 }
