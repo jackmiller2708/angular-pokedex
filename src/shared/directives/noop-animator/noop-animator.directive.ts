@@ -1,4 +1,4 @@
-import { AfterViewInit, Directive, ElementRef, Inject, Input, NgZone, Type } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, Inject, Input, NgZone, OnChanges, SimpleChanges, Type } from '@angular/core';
 import { provideAnimation } from './providers';
 import { CANVAS_ANIMATION } from './constants';
 import { IAnimation } from './interfaces';
@@ -8,7 +8,7 @@ import { IAnimation } from './interfaces';
   providers: [provideAnimation()],
   standalone: true,
 })
-export class NoopAnimatorDirective implements AfterViewInit {
+export class NoopAnimatorDirective implements AfterViewInit, OnChanges {
   private _height: number;
   private _width: number;
 
@@ -29,6 +29,14 @@ export class NoopAnimatorDirective implements AfterViewInit {
     private readonly _ngZone: NgZone
   ) {
     this._height = this._width = 0;
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const { width } = changes;
+
+    if (width && !width.isFirstChange()) {
+      this._animate();
+    }
   }
 
   ngAfterViewInit(): void {

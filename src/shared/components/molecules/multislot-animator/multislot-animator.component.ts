@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, ElementRef, Input } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, HostListener, Input, OnInit } from '@angular/core';
 import { provideMultislotAnimation } from './providers';
 import { NoopAnimatorDirective } from '@directives';
+import { Subject, debounceTime } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { Animation } from '@directives/noop-animator/constants';
 
@@ -14,7 +15,8 @@ import { Animation } from '@directives/noop-animator/constants';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
-export class MultislotAnimatorComponent {
+export class MultislotAnimatorComponent implements OnInit {
+  private readonly _hostResize: Subject<void>;
   private _animationType: Animation;
 
   @Input()
@@ -34,7 +36,22 @@ export class MultislotAnimatorComponent {
     return this._elRef.nativeElement.offsetWidth;
   }
 
-  constructor(private readonly _elRef: ElementRef<HTMLElement>) {
+  constructor(
+    private readonly _elRef: ElementRef<HTMLElement>,
+    private readonly _CDR: ChangeDetectorRef
+  ) {
     this._animationType = Animation.SNOWFLAKE;
+    this._hostResize = new Subject();
+  }
+
+  ngOnInit(): void {
+    this._hostResize
+      .pipe(debounceTime(300))
+      .subscribe(() => this._CDR.detectChanges());
+  }
+
+  @HostListener('window:resize')
+  onHostResize() {
+    this._hostResize.next();
   }
 }
