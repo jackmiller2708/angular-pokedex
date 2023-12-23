@@ -8,7 +8,7 @@
 
   <app-list class="flex-1 min-h-0 flex gap-2" [dataSource]="$any(dataSource.pokedexes)" [template]="pokedexTemplate">
     <ng-template #pokedexTemplate let-pokedex="item">
-      <app-link [to]="[breadcrumbs.last()!.path, pokedex.name]">
+      <app-link class="min-w-0 h-fit" [to]="[breadcrumbs.last()!.path, pokedex.name]">
         <app-pokedex-card [dataSource]="pokedex"/>
       </app-link>
     </ng-template>
