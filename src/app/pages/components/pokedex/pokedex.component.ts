@@ -26,7 +26,7 @@ function imports(): any[] {
   styleUrl: './pokedex.component.scss',
   imports: imports(),
   providers: [PokedexPageService],
-  host: { class: 'block h-full w-full overflow-y-auto' },
+  host: { class: 'h-full w-full overflow-y-auto flex flex-col p-4 gap-2' },
   standalone: true,
 })
 export class PokedexComponent implements IObserverSafe {
