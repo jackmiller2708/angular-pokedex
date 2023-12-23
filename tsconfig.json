@@ -6,6 +6,7 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitOverride": true,
+    "resolveJsonModule": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
@@ -21,6 +22,7 @@
     "useDefineForClassFields": false,
     "lib": ["ES2022", "dom"],
     "paths": {
+      "@package": ["./package.json"],
       "@app/*": ["./src/app/*"],
       "@services/*": ["./src/shared/data/services/*"],
       "@interfaces/*": ["./src/shared/data/interfaces/*"],

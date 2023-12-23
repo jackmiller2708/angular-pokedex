@@ -43,6 +43,10 @@ export class AppComponent implements IObserverSafe {
     return this._headerBannerConfig;
   }
 
+  get version(): string {
+    return this._appStateService.appVersion;
+  }
+
   constructor(
     // Tokens
     @Inject(LOADER_WAIT_TIME)
