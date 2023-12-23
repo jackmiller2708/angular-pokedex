@@ -2,6 +2,7 @@ import { HeaderComponent, LinkComponent, PortalComponent, SearchInputComponent }
 import { HeaderBannerConfig as THeaderBannerConfig } from '@components/molecules/header-banner/interfaces';
 import { HeaderBannerComponent } from '@components/molecules';
 import { Router, RouterOutlet } from '@angular/router';
+import { HeaderBannerConfig } from '@components/molecules/header-banner/models';
 import { Component, Inject } from '@angular/core';
 import { LOADER_WAIT_TIME } from '@constants/injection-tokens';
 import { AppStateService } from './services';
@@ -9,7 +10,6 @@ import { IObserverSafe } from '@interfaces/application';
 import { HelperService } from '@services/application';
 import { CommonModule } from '@angular/common';
 import { Subject } from 'rxjs';
-import { HeaderBannerConfig } from '@components/molecules/header-banner/models';
 
 const imports = [
   CommonModule,

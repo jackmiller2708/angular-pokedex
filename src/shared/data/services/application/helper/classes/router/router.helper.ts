@@ -1,8 +1,38 @@
 import { UnaryFunction, Observable, iif, timer, map, pipe, filter, switchMap, skip } from "rxjs";
 import { NavigationStart, NavigationEnd } from "@angular/router";
 import { RouterEvent } from "@models/application/utilities";
+import { IPathConfig } from "./interfaces";
+import { Map } from "immutable";
 
 export class RouterHelper {
+  getAltPathnameMap(config: IPathConfig, mappers: Record<string, (value: string) => string>) {
+    const { path, url, params } = config;
+
+    const fullPath = '/' + path;
+    const entries = Object.entries(params);
+
+    let aliases = Map<string, string>();
+    let constructedPath = '';
+
+    for (const [key, value] of entries) {
+      const slicedPath = (
+        constructedPath.length ? constructedPath : fullPath
+      ).slice(0, fullPath.indexOf(`:${key}`));
+      
+      const updatedPath = `${slicedPath === '/' ? '' : slicedPath}/${value}`;
+      const urlSegmentIdx = url.indexOf(updatedPath);
+
+      aliases = aliases.set(
+        url.slice(0, urlSegmentIdx + updatedPath.length),
+        key in mappers ? mappers[key](value) : value
+      );
+
+      constructedPath = updatedPath;
+    }
+
+    return aliases;
+  }
+
   /**
    * Transforms router events to emit the `boolean` loading state
    * after a `waitTime` number of milliseconds. 

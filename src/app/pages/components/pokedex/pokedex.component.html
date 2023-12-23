@@ -4,7 +4,7 @@
   <span>Pokedex: {{ dataSource.name }}</span>
 
   <app-list 
-    class="block h-full w-full"
+    class="flex flex-1 min-h-0 flex-wrap gap-2 w-full overflow-y-auto"
     [dataSource]="$any(dataSource.pokemonEntries)"
     [template]="pokemonCard"
   >

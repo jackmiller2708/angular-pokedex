@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './header.component.scss',
   imports: [CommonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { class: 'w-full h-16 bg-red-500' },
+  host: { class: 'w-full h-12 bg-red-500' },
   standalone: true,
 })
 export class HeaderComponent {}

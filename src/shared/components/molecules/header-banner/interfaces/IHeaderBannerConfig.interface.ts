@@ -1,4 +1,4 @@
-import { Animation } from '@components/atoms/canvas-animator/constants';
+import { Animation } from '@directives/noop-animator/constants';
 import { RecordOf } from 'immutable';
 
 export interface IHeaderBannerConfig {

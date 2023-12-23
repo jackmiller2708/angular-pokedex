@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MultislotAnimatorComponent } from '../';
 import { CommonModule } from '@angular/common';
-import { Animation } from '@components/atoms/canvas-animator/constants';
+import { Animation } from '@directives/noop-animator/constants';
 
 @Component({
   selector: 'app-header-banner',
@@ -9,7 +9,7 @@ import { Animation } from '@components/atoms/canvas-animator/constants';
   styleUrl: './header-banner.component.scss',
   imports: [CommonModule, MultislotAnimatorComponent],
   host: {
-    class: 'relative flex items-center justify-center w-full h-[40px] border-b',
+    class: 'relative flex items-center justify-center w-full h-[30px] border-b', 
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
