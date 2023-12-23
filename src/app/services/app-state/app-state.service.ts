@@ -1,6 +1,6 @@
 import { BehaviorSubject, Observable, distinctUntilChanged, share } from 'rxjs';
 import { Injectable } from '@angular/core';
-import * as pkg from '@package'
+import packageInfo  from '@package'
 
 @Injectable()
 export class AppStateService {
@@ -18,7 +18,7 @@ export class AppStateService {
   }
 
   constructor() {
-    this._appVersion = pkg.version
+    this._appVersion = packageInfo.version
     this._isLoading = new BehaviorSubject(false);
     this.isLoading$ = this._isLoading
       .asObservable()
