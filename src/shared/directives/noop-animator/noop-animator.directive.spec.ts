@@ -1,5 +1,4 @@
 import { NoopAnimatorDirective } from './noop-animator.directive';
-import { provideAnimation } from './providers';
 import { TestBed } from '@angular/core/testing';
 
 xdescribe('NoopAnimatorDirective', () => {
@@ -7,7 +6,7 @@ xdescribe('NoopAnimatorDirective', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [provideAnimation(), NoopAnimatorDirective],
+      providers: [NoopAnimatorDirective],
     });
 
     directive = TestBed.inject(NoopAnimatorDirective);
