@@ -9,14 +9,15 @@ import { Animation } from '@directives/noop-animator/constants';
   styleUrl: './header-banner.component.scss',
   imports: [CommonModule, MultislotAnimatorComponent],
   host: {
-    class: 'relative flex items-center justify-center w-full h-[30px] border-b', 
+    class: 'relative flex items-center justify-center w-full h-[30px] border-b',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
 export class HeaderBannerComponent {
   private _content: string;
-  private _animation: Animation;
+  private _contentClass: string | string[];
+  private _animation: Animation | undefined;
 
   @Input()
   set content(value: string) {
@@ -28,16 +29,25 @@ export class HeaderBannerComponent {
   }
 
   @Input()
+  set contentClass(value: string | string[]) {
+    this._contentClass = value;
+  }
+
+  get contentClass() {
+    return this._contentClass;
+  }
+
+  @Input()
   set animation(value: Animation) {
     this._animation = value;
   }
 
-  get animation(): Animation {
+  get animation(): Animation | undefined {
     return this._animation;
   }
 
   constructor() {
     this._content = '';
-    this._animation = Animation.SNOWFLAKE;
+    this._contentClass = [];
   }
 }

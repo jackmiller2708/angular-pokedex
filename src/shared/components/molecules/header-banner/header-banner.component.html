@@ -1,6 +1,8 @@
-<app-multislot-animator
-  [animationType]="animation"
-  class="absolute top-0 left-0 z-0"
-/>
+@if(animation) {
+  <app-multislot-animator
+    [animationType]="animation"
+    class="absolute top-0 left-0 z-0"
+  />
+}
 
-<div class="z-10 font-medium">{{ content }}</div>
+<div class="z-10 font-medium" [ngClass]="contentClass">{{ content }}</div>

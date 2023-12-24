@@ -3,6 +3,7 @@ import { RecordOf } from 'immutable';
 
 export interface IHeaderBannerConfig {
   content: string;
+  contentClass: string | string[];
   animation: Animation;
   visible: boolean;
 }

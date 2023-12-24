@@ -6,6 +6,7 @@
   <app-header-banner 
     [animation]="headerBannerConfig.animation" 
     [content]="headerBannerConfig.content"
+    [contentClass]="headerBannerConfig.contentClass"
   />
 }
 
@@ -25,4 +26,8 @@
 
 <div class="flex-1 min-h-0">
   <router-outlet />
+</div>
+
+<div class="fixed bottom-1 right-2 font-mono font-semibold opacity-40">
+  v{{ version }}
 </div>
