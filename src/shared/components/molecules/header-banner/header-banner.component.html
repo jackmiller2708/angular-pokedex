@@ -5,4 +5,9 @@
   />
 }
 
-<div class="z-10 font-medium" [ngClass]="contentClass">{{ content }}</div>
+<div 
+  class="z-10 font-medium whitespace-nowrap px-10 w-full overflow-ellipsis overflow-hidden text-center" 
+  [ngClass]="contentClass"
+>
+  {{ content }}
+</div>
