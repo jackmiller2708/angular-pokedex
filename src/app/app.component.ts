@@ -10,6 +10,7 @@ import { IObserverSafe } from '@interfaces/application';
 import { HelperService } from '@services/application';
 import { CommonModule } from '@angular/common';
 import { Subject } from 'rxjs';
+import { Animation } from '@directives/noop-animator/constants';
 
 const imports = [
   CommonModule,
@@ -60,8 +61,10 @@ export class AppComponent implements IObserverSafe {
     this._ngDestroy$ = new Subject();
     this._isLoading = false;
     this._headerBannerConfig = HeaderBannerConfig({
-      visible: true,
-      content: '🎄 Merry Christmas!!!'
+      visible: true, 
+      animation: Animation.STARRY_NIGHT,
+      contentClass: ['text-white'],
+      content: "🎇Good evening trainer!! It's night somewhere in the world🎇"
     });
   }
 

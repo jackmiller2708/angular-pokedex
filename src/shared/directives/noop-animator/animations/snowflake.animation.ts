@@ -21,6 +21,7 @@ export class Snowflake implements IAnimation {
     this._y = Math.random() * _scene.height;
     
     this.backgroundColor = 'rgb(239 68 68)';
+
   }
 
   update(): void {

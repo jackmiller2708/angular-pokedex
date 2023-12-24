@@ -6,4 +6,5 @@ export const HeaderBannerConfig = Record<IHeaderBannerConfig>({
   animation: Animation.SNOWFLAKE,
   content: '',
   visible: false,
+  contentClass: [],
 });

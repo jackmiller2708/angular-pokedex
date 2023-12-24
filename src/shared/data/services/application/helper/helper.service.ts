@@ -46,4 +46,20 @@ export class HelperService {
 
     return (S4() + S4() + '-' + S4() + '-' + S4() + '-' + S4() + '-' + S4() + S4() + S4());
   }
+
+  async waitForValue<T extends object, K extends keyof T>(object: T, key: K): Promise<NonNullable<T[K]>> {
+    const checkProperty = () => {
+      return new Promise<NonNullable<T[K]>>((resolve): void => {
+        const propertyValue = object[key];
+
+        if (propertyValue) {
+          return resolve(propertyValue);
+        }
+
+        setTimeout(() => resolve(checkProperty()), 100);
+      });
+    };
+
+    return await checkProperty();
+  }
 }

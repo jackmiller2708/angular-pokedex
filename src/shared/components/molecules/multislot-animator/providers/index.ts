@@ -1,18 +1,28 @@
 import { Animation, CANVAS_ANIMATION } from '@directives/noop-animator/constants';
 import { MultislotAnimatorComponent } from '../multislot-animator.component';
 import { Injector, Provider, Type } from '@angular/core';
+import { Snowflake, Star } from '@directives/noop-animator/animations';
+import { HelperService } from '@services/application';
 import { IAnimation } from '@directives/noop-animator/interfaces';
-import { Snowflake } from '@directives/noop-animator/animations';
 
 export function provideMultislotAnimation(): Provider {
   return {
     provide: CANVAS_ANIMATION,
-    useFactory: (injector: Injector): Type<IAnimation> => {
-      const component = injector.get(MultislotAnimatorComponent);
-      const animations = { [Animation.SNOWFLAKE]: Snowflake };
+    useFactory: async (injector: Injector): Promise<Type<IAnimation>> => {
+      const animationType = await injector
+        .get(HelperService)
+        .waitForValue(
+          injector.get(MultislotAnimatorComponent),
+          'animationType'
+        );
 
-      return animations[component.animationType];
+      const animations = {
+        [Animation.SNOWFLAKE]: Snowflake,
+        [Animation.STARRY_NIGHT]: Star,
+      };
+      
+      return animations[animationType];
     },
-    deps: [Injector],
+    deps: [Injector, HelperService],
   };
 }

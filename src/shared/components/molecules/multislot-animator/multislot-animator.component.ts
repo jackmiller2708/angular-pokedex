@@ -17,14 +17,14 @@ import { Animation } from '@directives/noop-animator/constants';
 })
 export class MultislotAnimatorComponent implements OnInit {
   private readonly _hostResize: Subject<void>;
-  private _animationType: Animation;
+  private _animationType: Animation | undefined;
 
   @Input()
   set animationType(value: Animation) {
     this._animationType = value;
-  }
+  } 
 
-  get animationType(): Animation {
+  get animationType(): Animation | undefined {
     return this._animationType;
   }
 
@@ -40,7 +40,6 @@ export class MultislotAnimatorComponent implements OnInit {
     private readonly _elRef: ElementRef<HTMLElement>,
     private readonly _CDR: ChangeDetectorRef
   ) {
-    this._animationType = Animation.SNOWFLAKE;
     this._hostResize = new Subject();
   }
 
