@@ -24,9 +24,7 @@ export const breadcrumbsResolver: ResolveFn<List<TBreadcrumb>> = (route, state) 
 
     return acc.push(
       Breadcrumb({
-        name: pathAliasMap.has(fullPath)
-          ? pathAliasMap.get(fullPath)
-          : path,
+        name: pathAliasMap.get(fullPath, path),
         path: fullPath,
       })
     );
