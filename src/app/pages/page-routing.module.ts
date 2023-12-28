@@ -1,11 +1,11 @@
 import { pokedexParamGuard, regionParamGuard, unnamedSegmentGuard } from '@app/guards';
 import { RouterModule, Routes } from '@angular/router';
 import { breadcrumbsResolver } from '@app/resolvers';
-import { pokemonResolver } from './components/pokemon/resolver/pokemon.resolver';
-import { pokedexResolver } from './components/pokedex/resolver/pokedex.resolver';
-import { regionResolver } from './components/region/resolver/region.resolver';
-import { HomeComponent } from './components';
-import { homeResolver } from './components/home/resolver/home.resolver';
+import { pokemonResolver } from './pokemon/resolver/pokemon.resolver';
+import { pokedexResolver } from './pokedex/resolver/pokedex.resolver';
+import { regionResolver } from './region/resolver/region.resolver';
+import { HomeComponent } from './home/home.component';
+import { homeResolver } from './home/resolver/home.resolver';
 import { NgModule } from '@angular/core';
 
 const routes: Routes = [
@@ -20,7 +20,7 @@ const routes: Routes = [
       {
         path: ':region',
         loadComponent: () =>
-          import('./components/region/region.component').then(
+          import('./region/region.component').then(
             (c) => c.RegionComponent
           ),
         resolve: {
@@ -31,7 +31,7 @@ const routes: Routes = [
       {
         path: ':region/:pokedex',
         loadComponent: () =>
-          import('./components/pokedex/pokedex.component').then(
+          import('./pokedex/pokedex.component').then(
             (c) => c.PokedexComponent
           ),
         canActivate: [regionParamGuard],
@@ -43,7 +43,7 @@ const routes: Routes = [
       {
         path: ':region/:pokedex/:pokemon',
         loadComponent: () =>
-          import('./components/pokemon/pokemon.component').then(
+          import('./pokemon/pokemon.component').then(
             (c) => c.PokemonComponent
           ),
         canActivate: [regionParamGuard, pokedexParamGuard],
@@ -58,21 +58,21 @@ const routes: Routes = [
   {
     path: 'regions',
     loadComponent: () =>
-      import('./components/resources/resources.component').then(
+      import('./resources/resources.component').then(
         (c) => c.ResourcesComponent
       ),
   },
   {
     path: 'pokedexes',
     loadComponent: () =>
-      import('./components/resources/resources.component').then(
+      import('./resources/resources.component').then(
         (c) => c.ResourcesComponent
       ),
   },
   {
     path: 'pokemons',
     loadComponent: () =>
-      import('./components/resources/resources.component').then(
+      import('./resources/resources.component').then(
         (c) => c.ResourcesComponent
       ),
   },
