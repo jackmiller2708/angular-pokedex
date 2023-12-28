@@ -9,8 +9,8 @@ import { AppStateService } from './services';
 import { IObserverSafe } from '@interfaces/application';
 import { HelperService } from '@services/application';
 import { CommonModule } from '@angular/common';
-import { Subject } from 'rxjs';
 import { Animation } from '@directives/noop-animator/constants';
+import { Subject } from 'rxjs';
 
 const imports = [
   CommonModule,
@@ -62,9 +62,9 @@ export class AppComponent implements IObserverSafe {
     this._isLoading = false;
     this._headerBannerConfig = HeaderBannerConfig({
       visible: true, 
-      animation: Animation.STARRY_NIGHT,
+      animation: Animation.CLOUD,
       contentClass: ['text-white'],
-      content: "🎇Good evening trainer!! It's night somewhere in the world🎇"
+      content: "Hello World!!"
     });
   }
 

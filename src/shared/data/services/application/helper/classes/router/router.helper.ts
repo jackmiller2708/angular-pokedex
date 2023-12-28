@@ -1,10 +1,39 @@
 import { UnaryFunction, Observable, iif, timer, map, pipe, filter, switchMap, skip } from "rxjs";
 import { NavigationStart, NavigationEnd } from "@angular/router";
+import { Breadcrumb as TBreadcrumb } from '@interfaces/application';
 import { RouterEvent } from "@models/application/utilities";
 import { IPathConfig } from "./interfaces";
-import { Map } from "immutable";
+import { Breadcrumb } from '@models/application/utilities';
+import { List, Map } from "immutable";
+
 
 export class RouterHelper {
+  getPath(path: string, currPath: string): string {
+    return `${path === '/' ? '' : path}/${currPath}`;
+  }
+  
+  generateBreadcrumbs(urls: string[], pathnameMap: Map<string, string>): List<TBreadcrumb> {
+    let breadcrumbs = List([Breadcrumb()]);
+    let path = breadcrumbs.last()!.path;
+  
+    for (const pathname of urls) {
+      path = this.getPath(path, pathname);
+  
+      if (pathname === '-') {
+        continue;
+      }
+  
+      breadcrumbs = breadcrumbs.push(
+        Breadcrumb({
+          name: pathnameMap.get(path, pathname),
+          path,
+        })
+      );
+    }
+  
+    return breadcrumbs;
+  }
+
   getAltPathnameMap(config: IPathConfig, mappers: Record<string, (value: string) => string>) {
     const { path, url, params } = config;
 
