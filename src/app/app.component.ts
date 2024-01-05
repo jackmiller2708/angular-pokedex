@@ -32,7 +32,7 @@ const imports = [
   providers: [AppStateService],
   host: {
     class:
-      'relative w-screen h-screen flex flex-col overflow-hidden dark:bg-gray-900 dark:text-white',
+      'transition-colors duration-200 relative w-screen h-screen flex flex-col overflow-hidden dark:bg-gray-900 dark:text-white',
   },
   standalone: true,
 })
@@ -129,8 +129,8 @@ export class AppComponent implements IObserverSafe {
     const register = observableRegistrarFactory.call(this, this._ngDestroy$);
     const eventDrivenLoading$ = events.pipe(toLoading(this._loaderWaitTime));
 
-    register(eventDrivenLoading$, this._onLoadingChange);
-    register(loadingState$, this._onLoadingStateChange);
     register(selectedTheme$, this._onSelectedTheme);
+    register(loadingState$, this._onLoadingStateChange);
+    register(eventDrivenLoading$, this._onLoadingChange);
   }
 }

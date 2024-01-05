@@ -9,6 +9,7 @@ import { Subject } from 'rxjs';
   templateUrl: './theme-switcher.component.html',
   styleUrl: './theme-switcher.component.scss',
   imports: [CommonModule],
+  host: { class: 'scale-50' },
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
