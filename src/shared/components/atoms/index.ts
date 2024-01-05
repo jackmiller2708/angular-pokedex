@@ -6,3 +6,4 @@ export * from './search-input/search-input.component';
 export * from './link/link.component';
 export * from './portal/portal.component';
 export * from './canvas-animator/canvas-animator.component';
+export * from './theme-switcher/theme-switcher.component';

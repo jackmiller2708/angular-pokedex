@@ -17,6 +17,10 @@ export class AppStateService {
     return this._appVersion;
   }
 
+  get isOnClient(): boolean {
+    return typeof window !== 'undefined';
+  }
+
   constructor() {
     this._appVersion = packageInfo.version;
     this._isLoading = new BehaviorSubject(false);

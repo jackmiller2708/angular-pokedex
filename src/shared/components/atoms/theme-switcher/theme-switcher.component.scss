@@ -1,0 +1,25 @@
+:host .switch {
+  position: relative;
+  height: 30px;
+  width: 100px;
+
+  .nub {
+    position: absolute;
+    height: 25px;
+    width: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &.light {
+    .nub {
+      left: 0;
+    }
+  }
+
+  &.dark {
+    .nub {
+      right: 0;
+    }
+  }
+}
