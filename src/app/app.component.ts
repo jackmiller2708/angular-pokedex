@@ -30,7 +30,10 @@ const imports = [
   styleUrls: ['./app.component.scss'],
   imports,
   providers: [AppStateService],
-  host: { class: 'relative w-screen h-screen flex flex-col overflow-hidden' },
+  host: {
+    class:
+      'relative w-screen h-screen flex flex-col overflow-hidden dark:bg-gray-900 dark:text-white',
+  },
   standalone: true,
 })
 export class AppComponent implements IObserverSafe {
@@ -64,10 +67,10 @@ export class AppComponent implements IObserverSafe {
     this._ngDestroy$ = new Subject();
     this._isLoading = false;
     this._headerBannerConfig = HeaderBannerConfig({
-      visible: true, 
+      visible: true,
       animation: Animation.CLOUD,
       contentClass: ['text-white'],
-      content: "Hello World!!"
+      content: 'Hello World!!',
     });
   }
 
@@ -113,7 +116,7 @@ export class AppComponent implements IObserverSafe {
 
     document.documentElement.classList.remove(prevTheme);
     document.documentElement.classList.add(theme);
-    
+
     localStorage.setItem(LocalStorageKey.APP_THEME, theme);
   }
 
